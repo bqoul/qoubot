@@ -1,6 +1,6 @@
-const c = require('./client');
+const client = require('./client');
 
-c.client.connect();
+client.connect();
 
 //global timeout protection
 let waiting = false;
@@ -18,19 +18,25 @@ const gtp = async (channel) => {
     waiting = false;
 }
 
-c.client.on('message', async (channel, user, message, self) => { //command listeners
-    if (waiting_channels.includes(channel) && waiting || self) {
+client.on('message', async (channel, user, message, self) => { //message listeners
+    if (self) {
+        return;
+    }
+})
+
+client.on('message', async (channel, user, message, self) => { //command listeners separated from message
+    if (waiting_channels.includes(channel) && waiting || self) { //listeners cause i dont want gtp to block them
         return;
     }
 
     switch(message.split(' ')[0]) {
         case '&help':
-            c.client.say(channel, `@${user.username} no elp NOPERS`);
+            client.say(channel, `@${user.username} no elp NOPERS`);
             gtp(channel);
             break;
 
         case '&commands':
-            c.client.say(channel, `@${user.username} you can find all commands here => https://github.com/bqoul/qoubot`);
+            client.say(channel, `@${user.username} you can find all commands here => https://github.com/bqoul/qoubot`);
             gtp(channel);
             break;
 
@@ -47,19 +53,25 @@ c.client.on('message', async (channel, user, message, self) => { //command liste
             break;
 
         case '&weather':
+            const weather = require('./commands/weather');
+            weather(channel, user, message);
             gtp(channel);
             break;
 
         case '&pyramid':
+            const pyramid = require('./commands/pyramid');
+            pyramid(channel, message);
             gtp(channel);
             break;
 
         case '&shuffle':
+            const shuffle = require('./commands/shuffle');
+            shuffle(channel, message);
             gtp(channel);
             break;
 
         case '&vanish':
-            gtp(channel);
+            client.timeout(channel, user.username, 1, 'vanish');
             break;
 
         case '&gay':
@@ -76,9 +88,3 @@ c.client.on('message', async (channel, user, message, self) => { //command liste
 
     }
 });
-
-c.client.on('message', async (channel, user, message, self) => { //message listeners
-    if (self) {
-        return;
-    }
-})
