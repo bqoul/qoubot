@@ -1,5 +1,5 @@
 ### COMMANDS: 
-* &info - send link to this place
+* &commands - send link to this place
 * &help - no elp
 * &repeat - repeat all messages from Username (only for whitelisted users)
 * &repeatshuffle - repeat all messages from Username, but in a weird way (only for whitelisted users)
