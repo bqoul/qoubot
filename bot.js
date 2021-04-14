@@ -29,6 +29,14 @@ client.on('message', async (channel, user, message, self) => { //message listene
     if (user.username.toLowerCase() === rep.target.toLowerCase()) {
         repeat.run(channel, message);
     }
+
+    let quiz = JSON.parse(fs.readFileSync('data/quiz.json'));
+    if (message.toLowerCase().includes(quiz.answer.toLowerCase()) && !quiz.answered) {
+        client.say(channel, `@${user.username} correct! the answer was [${quiz.answer}]`);
+        quiz.answered = true;
+
+        fs.writeFileSync('data/quiz.json', JSON.stringify(quiz, null, 1));
+    }
 })
 
 client.on('message', async (channel, user, message, self) => { //command listener are separated cause i dont
@@ -103,6 +111,8 @@ client.on('message', async (channel, user, message, self) => { //command listene
             break;
 
         case '&quiz':
+            const quiz = require('./commands/quiz');
+            quiz.run(channel, user, message);
             gtp(channel);
             break;
 
