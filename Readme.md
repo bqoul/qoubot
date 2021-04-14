@@ -9,14 +9,14 @@
 * commands based on generating random numbers
   - &gay
   - &iq
+#### commands for whitelisted users (mods, vips, streamer):
+* &repeat - repeat all messages from Username [usage example]:
+  - &repeat username - repeat messages from chosen username
+  - &repeat username shuffle - repeat messages from chosen username and shuffle them
+* &stop - stop repeating messages (only for whitelisted users)
 * quiz commands
   - &quiz start - start the quiz
   - &quiz stop - stop the quiz
   - &quiz timeout - set custom timeout in seconds ("&quiz timeout 60" will set the timeout to 60 seconds), default timeout is 5 minutes
   - &quiz next - send next question, reseting the timeout if quiz was running
   - &quiz when - check time remaining to next question
-#### commands for whitelisted users (mods, vips, streamer):
-* &repeat - repeat all messages from Username [usage example]:
-  - &repeat username - repeat messages from chosen username
-  - &repeat username shuffle - repeat messages from chosen username and shuffle them
-* &stop - stop repeating messages (only for whitelisted users)
