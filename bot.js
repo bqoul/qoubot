@@ -54,6 +54,8 @@ client.on('message', async (channel, user, message, self) => { //command listene
             break;
 
         case '&stop':
+            const stop = require('./commands/stop');
+            stop(channel, user);
             gtp(channel);
             break;
 
