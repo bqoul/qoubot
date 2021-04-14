@@ -3,7 +3,7 @@ const fetch = require('node-fetch');
 const fs = require('fs');
 
 const weather = async (channel, user, message) => {
-    let key = JSON.parse(fs.readFileSync('keys.json'));
+    let key = JSON.parse(fs.readFileSync('data/keys.json'));
     let city = message.slice(9);
 
     let link = `http://api.weatherapi.com/v1/current.json?key=${key.weather}&q=${city}`;
