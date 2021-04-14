@@ -1,8 +1,9 @@
 ### COMMANDS: 
 * &commands - send link to this place
 * &help - no elp
-* &repeat - repeat all messages from Username (only for whitelisted users)
-* &repeatshuffle - repeat all messages from Username, but in a weird way (only for whitelisted users)
+* &repeat - repeat all messages from Username (only for whitelisted users) EX:
+  - &repeat username - repeat messages from chosen username
+  - &repeat username shuffle - repeat messages from chosen username and shuffle them
 * &stop - stop repeating messages (only for whitelisted users)
 * &weather - show weather in chosen city
 * &pyramid - build a pyramid from chosen emote/symbol/string, max height of the pyramid is 7, default height is 3 (bot has to be mod\vip, otherwise he will only send 1 emote)

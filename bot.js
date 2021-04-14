@@ -1,4 +1,5 @@
 const client = require('./client');
+const fs = require('fs');
 
 client.connect();
 
@@ -23,10 +24,11 @@ client.on('message', async (channel, user, message, self) => { //message listene
         return;
     }
 
-    // const {target, repeat} = require('./commands/repeat/repeat');
-    // if (user.username.toLowerCase() === target.toLowerCase()) {
-    //     repeat(channel, message);
-    // }
+    let rep = JSON.parse(fs.readFileSync('data/repeat.json'));
+    const repeat = require('./commands/repeat');
+    if (user.username.toLowerCase() === rep.target.toLowerCase()) {
+        repeat.run(channel, message);
+    }
 })
 
 client.on('message', async (channel, user, message, self) => { //command listener are separated cause i dont

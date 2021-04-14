@@ -1,23 +1,27 @@
 const client = require('../client');
 const fs = require('fs');
 
-let repeat_data = JSON.parse(fs.readFileSync('data/repeat.json'));
-let target = repeat_data.target;
-let shuffle = repeat_data.shuffle;
+let data = JSON.parse(fs.readFileSync('data/repeat.json'));
 
-const set_target = (channel, user, message) => {
-    target = message.split(' ')[1];
-    shuffling = false;
-
-    if (message.split(' ')[2] == 'shuffle') {
-        shuffling = true;
-    }
-
-    client.say(channel, `@${user.username} got him TriHard ${target}`);
+let rep = {
+    target: data.target,
+    shuffle: data.shuffle,
 }
 
-const repeat = (channel, message) => {
-    if (shuffle) {
+const set_target = (channel, user, message) => {
+    rep.target = message.split(' ')[1];
+    rep.shuffle = false;
+
+    if (message.split(' ')[2] === 'shuffle') {
+        rep.shuffle = true;
+    }
+
+    client.say(channel, `@${user.username} got him TriHard`);
+    fs.writeFileSync('data/repeat.json', JSON.stringify(rep, null, 1));
+}
+
+const run = (channel, message) => {
+    if (rep.shuffle) {
         msg = message.split(' ');
 
         for (let i = msg.length - 1; i > 0; i--) {
@@ -32,5 +36,4 @@ const repeat = (channel, message) => {
 }
 
 module.exports.set_target = set_target;
-module.exports.target = target;
-module.exports.repeat = repeat;
+module.exports.run = run;
