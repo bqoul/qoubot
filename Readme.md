@@ -13,7 +13,7 @@
   - &iq username - check iq of username
   - &iq - check your iq
 * quiz commands
-  - &quiz when - check time remaining to next question
+  - &quiz when - check remaining time to next question
 #### commands for whitelisted users (mods, vips, streamer):
 * &repeat - repeat all messages from Username [usage example]:
   - &repeat username - repeat messages from chosen username
