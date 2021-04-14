@@ -18,7 +18,7 @@
 * &repeat - repeat all messages from Username [usage example]:
   - &repeat username - repeat messages from chosen username
   - &repeat username shuffle - repeat messages from chosen username and shuffle them
-* &stop - stop repeating messages (only for whitelisted users)
+* &stop - stop repeating messages
 * quiz commands
   - &quiz start - start the quiz
   - &quiz stop - stop the quiz
