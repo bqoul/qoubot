@@ -4,7 +4,7 @@ const pyramid = (channel, message) => {
     let times = message.split(' ')[2];
     let emote = message.split(' ')[1] + ' ';
 
-    if (emote === undefined) {
+    if (message.split(' ')[1] === undefined) {
         client.say(channel, `@${usr.username} please choose an emote`)
     } else {
         if (times < 3 || times === undefined) {

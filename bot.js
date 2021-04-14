@@ -54,7 +54,7 @@ client.on('message', async (channel, user, message, self) => { //command listene
 
         case '&weather':
             const weather = require('./commands/weather');
-            weather(channel, user, message);
+            await weather(channel, user, message);
             gtp(channel);
             break;
 
@@ -75,10 +75,14 @@ client.on('message', async (channel, user, message, self) => { //command listene
             break;
 
         case '&gay':
+            const gay = require('./commands/gay');
+            gay(channel, user, message);
             gtp(channel);
             break;
 
         case '&iq':
+            const iq = require('./commands/iq');
+            iq(channel, user, message);
             gtp(channel);
             break;
 
