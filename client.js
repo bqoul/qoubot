@@ -1,8 +1,8 @@
 const tmi = require('tmi.js');
 const fs = require('fs');
 
-const key = JSON.parse(fs.readFileSync('keys.json'));
-const channels = JSON.parse(fs.readFileSync('channels.json'));
+const key = JSON.parse(fs.readFileSync('data/keys.json'));
+const channels = JSON.parse(fs.readFileSync('data/channels.json'));
 
 const client = new tmi.Client({
     options: {debug: true},

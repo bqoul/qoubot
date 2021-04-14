@@ -18,14 +18,19 @@ const gtp = async (channel) => {
     waiting = false;
 }
 
-client.on('message', async (channel, user, message, self) => { //message listeners
+client.on('message', async (channel, user, message, self) => { //message listener
     if (self) {
         return;
     }
+
+    // const {target, repeat} = require('./commands/repeat/repeat');
+    // if (user.username.toLowerCase() === target.toLowerCase()) {
+    //     repeat(channel, message);
+    // }
 })
 
-client.on('message', async (channel, user, message, self) => { //command listeners separated from message
-    if (waiting_channels.includes(channel) && waiting || self) { //listeners cause i dont want gtp to block them
+client.on('message', async (channel, user, message, self) => { //command listener are separated cause i dont
+    if (waiting_channels.includes(channel) && waiting || self) { //want gtp to block message listener
         return;
     }
 
@@ -41,10 +46,8 @@ client.on('message', async (channel, user, message, self) => { //command listene
             break;
 
         case '&repeat':
-            gtp(channel);
-            break;
-
-        case '&repeatshuffle':
+            const repeat = require('./commands/repeat');
+            repeat.set_target(channel, user, message);
             gtp(channel);
             break;
 
