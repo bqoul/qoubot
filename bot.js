@@ -36,6 +36,7 @@ client.on('message', async (channel, user, message, self) => { //command listene
         return;
     }
 
+    const whitelisted = require('./whitelist_check');
     switch(message.split(' ')[0]) {
         case '&help':
             client.say(channel, `@${user.username} no elp NOPERS`);
@@ -48,14 +49,22 @@ client.on('message', async (channel, user, message, self) => { //command listene
             break;
 
         case '&repeat':
-            const repeat = require('./commands/repeat');
-            repeat.set_target(channel, user, message);
+            if (whitelisted(channel, user)) {
+                const repeat = require('./commands/repeat');
+                repeat.set_target(channel, user, message);
+            } else {
+                client.say(channel, `@${user.username} this command is only for whitelisted users`);
+            }
             gtp(channel);
             break;
 
         case '&stop':
-            const stop = require('./commands/stop');
-            stop(channel, user);
+            if (whitelisted(channel, user)) {
+                const stop = require('./commands/stop');
+                stop(channel, user);
+            } else {
+                client.say(channel, `@${user.username} this command is only for whitelisted users`);
+            }
             gtp(channel);
             break;
 
