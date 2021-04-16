@@ -24,9 +24,9 @@ client.on('message', async (channel, user, message, self) => { //message listene
         return;
     }
 
-    let rep = JSON.parse(fs.readFileSync('data/repeat.json'));
+    let repeat_data = JSON.parse(fs.readFileSync('data/repeat.json'));
     const repeat = require('./commands/repeat');
-    if (user.username.toLowerCase() === rep.target.toLowerCase()) {
+    if (user.username.toLowerCase() === repeat_data[channel].target.toLowerCase()) {
         repeat.run(channel, message);
     }
 

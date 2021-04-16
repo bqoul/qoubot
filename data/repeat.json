@@ -1,4 +1,10 @@
 {
- "target": "",
- "shuffle": false
+ "#qoubot": {
+  "target": "",
+  "shuffle": false
+ },
+ "#5gxd": {
+  "target": "",
+  "shuffle": false
+ }
 }
