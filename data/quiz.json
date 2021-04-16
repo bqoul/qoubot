@@ -1,7 +1,16 @@
 {
- "running": false,
- "timeout": 300000,
- "answer": "nab",
- "answered": true,
- "time_remaining": 286
+ "#5gxd": {
+  "running": false,
+  "timeout": 300000,
+  "answer": "Lexington",
+  "answered": true,
+  "time_remaining": 264
+ },
+ "#qoubot": {
+  "running": true,
+  "timeout": 60000,
+  "answer": "Kim Delaney",
+  "answered": true,
+  "time_remaining": 23
+ }
 }

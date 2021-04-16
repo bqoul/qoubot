@@ -30,12 +30,13 @@ client.on('message', async (channel, user, message, self) => { //message listene
         repeat.run(channel, message);
     }
 
-    let quiz = JSON.parse(fs.readFileSync('data/quiz.json'));
-    if (message.toLowerCase().includes(quiz.answer.toLowerCase()) && !quiz.answered) {
-        client.say(channel, `@${user.username} correct! the answer was [${quiz.answer}]`);
-        quiz.answered = true;
+    const quiz = require('./commands/quiz');
+    let quiz_data = quiz.get_quiz_data(channel);
+    if (message.toLowerCase().includes(quiz_data[channel].answer.toLowerCase()) && !quiz_data[channel].answered) {
+        client.say(channel, `@${user.username} correct! the answer was [${quiz_data[channel].answer}]`);
+        quiz_data[channel].answered = true;
 
-        fs.writeFileSync('data/quiz.json', JSON.stringify(quiz, null, 1));
+        fs.writeFileSync('data/quiz.json', JSON.stringify(quiz_data, null, 1));
     }
 })
 
