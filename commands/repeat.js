@@ -1,10 +1,8 @@
 const client = require('../client');
 const fs = require('fs');
 
-let repeat_data = undefined;
-
 const set_target = (channel, user, message) => {
-    repeat_data = get_repeat_data(channel);
+    let repeat_data = get_repeat_data(channel);
 
     repeat_data[channel].target = message.split(' ')[1];
     repeat_data[channel].shuffle = false;
@@ -18,7 +16,7 @@ const set_target = (channel, user, message) => {
 }
 
 const run = (channel, message) => {
-    repeat_data = get_repeat_data(channel);
+    let repeat_data = get_repeat_data(channel);
 
     if (repeat_data[channel].shuffle) {
         msg = message.split(' ');
