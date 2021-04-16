@@ -4,13 +4,13 @@
   "timeout": 300000,
   "answer": "Lexington",
   "answered": true,
-  "time_remaining": 264
+  "time_remaining": 300
  },
  "#qoubot": {
-  "running": true,
-  "timeout": 60000,
+  "running": false,
+  "timeout": 300000,
   "answer": "Kim Delaney",
   "answered": true,
-  "time_remaining": 23
+  "time_remaining": 300
  }
 }
