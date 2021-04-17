@@ -18,6 +18,10 @@
   - &points - check your amount of points
   - &points username - check amount of username's points
   - &points give username amount - give 'amount' of points to the username
+* &count - counts everything you enter after the command [example]:
+  - &count 1 + 1 - will give 2
+  - &count sin(90 deg) - will give 1
+  - &count 5 ^ 2 - will give 25 ...etc
 #### commands for whitelisted users (mods, vips, streamer):
 * &repeat - repeat all messages from Username [usage example]:
   - &repeat username - repeat messages from chosen username
