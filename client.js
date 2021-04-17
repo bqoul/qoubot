@@ -11,7 +11,7 @@ const client = new tmi.Client({
         username: 'qoubot',
         password: key.oauth,
     },
-    channels: channels.list,
+    channels: channels,
 });
 
 module.exports = client;
