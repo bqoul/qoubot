@@ -57,6 +57,7 @@ const command = (channel, user, message) => {
                 fs.writeFileSync('data/points.json', JSON.stringify(all_points, null, 1));
 
                 give(channel, amount, message.split(' ')[2]);
+                client.say(channel, `@${user.username} transfer was successful, now you have ${all_points[channel][user.username]} points`);
             } else {
                 client.say(channel, `@${user.username} you have only ${user_points} points`);
             }

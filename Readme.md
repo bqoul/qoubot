@@ -14,6 +14,10 @@
   - &iq - check your iq
 * quiz commands
   - &quiz when - check remaining time to next question
+* &points [usage expample]:
+  - &points - check you amount of points
+  - &points username - check amount of username's points
+  - &points give username amount - give 'amount' of points to the username
 #### commands for whitelisted users (mods, vips, streamer):
 * &repeat - repeat all messages from Username [usage example]:
   - &repeat username - repeat messages from chosen username
