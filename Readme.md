@@ -6,10 +6,10 @@
 * &pyramid - build a pyramid from chosen emote/symbol/string, max height of the pyramid is 7, default height is 3 (bot has to be mod\vip, otherwise he will only send 1 emote)
 * &shuffle - shuffle everything u enter after the command
 * &vanish - delete all your messages (bot has to be mod)
-* &gay - reveal true nature of chosen person [example usage]:
+* &gay - reveal true nature of chosen person [usage example]:
   - &gay username - reveals true nature of username
   - &gay - reveals your true nature
-* &iq - quick and simple way to check your iq [example usage]:
+* &iq - quick and simple way to check your iq [usage example]:
   - &iq username - check iq of username
   - &iq - check your iq
 * quiz commands
