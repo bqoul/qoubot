@@ -25,8 +25,8 @@ client.on('message', async (channel, user, message, self) => { //message listene
     }
 
     //check repeats
-    let repeat_data = JSON.parse(fs.readFileSync('data/repeat.json'));
     const repeat = require('./commands/repeat');
+    let repeat_data = repeat.get_repeat_data(channel);
     if (user.username.toLowerCase() === repeat_data[channel].target.toLowerCase()) {
         repeat.run(channel, message);
     }
@@ -38,9 +38,9 @@ client.on('message', async (channel, user, message, self) => { //message listene
     if (message.toLowerCase().includes(quiz_data[channel].answer.toLowerCase()) && !quiz_data[channel].answered) {
         quiz_data[channel].answered = true;
 
-        let time = quiz_data[channel].timeout / 1000 - quiz_data[channel].time_remaining;
+        let time = quiz_data[channel].timeout / 1000 - quiz_data[channel].time_remaining; //need this to sort amount of points for reward
         let pts;
-
+        //less time user needs to answer, more points he gets
         if (time <= 10) {
             points.give(channel, 300, user.username);
             pts = 300;
@@ -138,6 +138,12 @@ client.on('message', async (channel, user, message, self) => { //command listene
         case '&points':
             const points = require('./commands/points');
             points.command(channel, user, message);
+            gtp(channel);
+            break;
+
+        case '&count':
+            const count = require('./commands/count');
+            count(channel, user, message);
             gtp(channel);
             break;
     }

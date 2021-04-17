@@ -51,4 +51,5 @@ function get_repeat_data(channel) {
 }
 
 module.exports.set_target = set_target;
+module.exports.get_repeat_data = get_repeat_data;
 module.exports.run = run;
