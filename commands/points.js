@@ -33,8 +33,9 @@ const get = (channel, username) => {
 
 const give = (channel, amount, target) => {
     let all_points = JSON.parse(fs.readFileSync('data/points.json'));
+    let current_points = get(channel, target);
 
-    all_points[channel][target] = get(channel, target) + parseInt(amount);
+    all_points[channel][target] = current_points + parseInt(amount);
 
     fs.writeFileSync('data/points.json', JSON.stringify(all_points, null, 1));
 }

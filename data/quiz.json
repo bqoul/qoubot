@@ -1,16 +1,2 @@
 {
- "#5gxd": {
-  "running": false,
-  "timeout": 300000,
-  "answer": "Lexington",
-  "answered": true,
-  "time_remaining": 300
- },
- "#qoubot": {
-  "running": false,
-  "timeout": 300000,
-  "answer": "Kim Delaney",
-  "answered": true,
-  "time_remaining": 300
- }
 }
