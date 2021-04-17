@@ -24,12 +24,14 @@ client.on('message', async (channel, user, message, self) => { //message listene
         return;
     }
 
+    //check repeats
     let repeat_data = JSON.parse(fs.readFileSync('data/repeat.json'));
     const repeat = require('./commands/repeat');
     if (user.username.toLowerCase() === repeat_data[channel].target.toLowerCase()) {
         repeat.run(channel, message);
     }
 
+    //check quiz answers
     const quiz = require('./commands/quiz');
     let quiz_data = quiz.get_quiz_data(channel);
     if (message.toLowerCase().includes(quiz_data[channel].answer.toLowerCase()) && !quiz_data[channel].answered) {
@@ -117,5 +119,10 @@ client.on('message', async (channel, user, message, self) => { //command listene
             gtp(channel);
             break;
 
+        case '&points':
+            const points = require('./commands/points');
+            points.command(channel, user, message);
+            gtp(channel);
+            break;
     }
 });
