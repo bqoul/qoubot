@@ -42,12 +42,15 @@ client.on('message', async (channel, user, message, self) => { //message listene
         let pts;
         //less time user needs to answer, more points he gets
         if (time <= 10) {
+            points.get(channel, user.username); //getting points to avoid 'target property is undefined' when user has no points in points.json
             points.give(channel, 300, user.username);
             pts = 300;
         } else if (time <= 20) {
+            points.get(channel, user.username);
             points.give(channel, 200, user.username);
             pts = 200;
         } else {
+            points.get(channel, user.username);
             points.give(channel, 100, user.username);
             pts = 100;
         }
@@ -144,6 +147,12 @@ client.on('message', async (channel, user, message, self) => { //command listene
         case '&count':
             const count = require('./commands/count');
             count(channel, user, message);
+            gtp(channel);
+            break;
+
+        case '&gamble':
+            const gamble = require('./commands/gamble');
+            gamble(channel, user, message);
             gtp(channel);
             break;
     }

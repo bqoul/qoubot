@@ -22,6 +22,9 @@
   - &count 1 + 1 - will give 2
   - &count sin(90 deg) - will give 1
   - &count 5 ^ 2 - will give 25 ...etc
+* &gamble - GAMBA FeelsGoodMan, three identical emotes = points multiplied by ten, all different emotes = your points goes back to you (you need at least 100 points to be able to gamble)[usage example]:
+  - &gamble all - gamble all your points
+  - &gamble 100 - gamble 100 points
 #### commands for whitelisted users (mods, vips, streamer):
 * &repeat - repeat all messages from Username [usage example]:
   - &repeat username - repeat messages from chosen username
