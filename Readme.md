@@ -22,9 +22,17 @@
   - &count 1 + 1 - will give 2
   - &count sin(90 deg) - will give 1
   - &count 5 ^ 2 - will give 25 ...etc
-* &gamble - GAMBA FeelsGoodMan, three identical emotes = points multiplied by ten, all different emotes = return gambled points (you need at least 100 points to be able to gamble)[usage example]:
-  - &gamble all - gamble all your points
-  - &gamble 100 - gamble 100 points
+* &gamble - GAMBA GAMBA -> match 2 emotes and get your rate doubled, match 3 emotes and win a SPECIAL prize:
+  - TriHard - your rate x10
+  - PogChamp - your rate x6
+  - Kreygasm - your rate x5
+  - SeemsGood - your rate x4
+  - Kappa - your rate x3
+  - ResidentSleeper - your rate x2
+  - Jebaited - get your rate back
+  - BibleThump - lose your rate
+  - NotLikeThis - lose your rate and even more
+  - WutFace - roll between all other rewards
 #### commands for whitelisted users (mods, vips, streamer):
 * &repeat - repeat all messages from Username [usage example]:
   - &repeat username - repeat messages from chosen username
