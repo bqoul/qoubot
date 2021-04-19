@@ -22,17 +22,12 @@
   - &count 1 + 1 - will give 2
   - &count sin(90 deg) - will give 1
   - &count 5 ^ 2 - will give 25 ...etc
-* &gamble - GAMBA GAMBA -> match 2 emotes and get your rate doubled, match 3 emotes and win a SPECIAL prize:
+* &gamble - GAMBA GAMBA -> match 2 emotes and get your rate back, match 3 emotes and win a SPECIAL prize:
   - TriHard - your rate x10
-  - PogChamp - your rate x6
-  - Kreygasm - your rate x5
-  - SeemsGood - your rate x4
-  - Kappa - your rate x3
-  - ResidentSleeper - your rate x2
+  - PogChamp - your rate x5
   - Jebaited - get your rate back
-  - BibleThump - lose your rate
-  - NotLikeThis - lose your rate and even more
-  - WutFace - roll between all other rewards
+  - BibleThump - lose your rate and even more
+  - WutFace - random roll between all other prizes
 #### commands for whitelisted users (mods, vips, streamer):
 * &repeat - repeat all messages from Username [usage example]:
   - &repeat username - repeat messages from chosen username
@@ -43,6 +38,6 @@
   - &quiz stop - stop the quiz
   - &quiz timeout - set custom timeout in seconds ("&quiz timeout 60" will set the timeout to 60 seconds), default timeout is 5 minutes
   - &quiz next - send next question, reseting the timeout if quiz was running
-* &commands - add\remove custom commands [usage example]:
-  - &commands add &examle this command is example - will add &example command which will say 'this command is example' on call
-  - &commands remove &example - will remove &example command
+* &command - add\remove custom commands [usage example]:
+  - &command add &examle this command is example - will add &example command which will say 'this command is example' on call
+  - &command remove &example - will remove &example command

@@ -1,66 +1,32 @@
 const client = require('../client');
 const points = require('./points');
 
-const give_reward = (slot) => {
-    switch(slot) {
-        case 'Kreygasm':
-            client.say(channel, `[ Kreygasm | Kreygasm | Kreygasm ]  ${user.username} won ${(amount * 5) - amount} points`);
-            points.give(channel, (amount * 5) - amount, user.username);
-            break;
+let slots = ['Jebaited', 'TriHard', 'PogChamp', 'BibleThump', 'WutFace'];
 
-        case 'NotLikeThis':
-            client.say(channel, `[ NotLikeThis | NotLikeThis | NotLikeThis ]  ${user.username} lost ${amount * 2} points`);
-            points.give(channel, -(amount * 2), user.username);
-            break;
-
+const reward = (channel, user, amount, slot) => {
+    switch(slots[slot]) {
         case 'Jebaited':
-            client.say(channel, `[ Jebaited | Jebaited | Jebaited ]  ${user.username} won his ${amount} points back`);
-            break;
+            return `${user.username} won his ${amount} points back`;
 
         case 'TriHard':
-            client.say(channel, `[ TriHard | TriHard | TriHard ]  ${user.username} won ${(amount * 10) - amount} points`);
             points.give(channel, (amount * 10) - amount, user.username);
-            break;
+            return `${user.username} won ${(amount * 10)} points`;
 
         case 'PogChamp':
-            client.say(channel, `[ PogChamp | PogChamp | PogChamp ]  ${user.username} won ${(amount * 6) - amount} points`);
-            points.give(channel, (amount * 6) - amount, user.username);
-            break;
-
-        case 'CoolCat':
-            client.say(channel, `[ CoolCat | CoolCat | CoolCat ]  ${user.username} won 1337 points`);
-            points.give(channel, 1337, user.username);
-            break;
+            points.give(channel, (amount * 5) - amount, user.username);
+            return `${user.username} won ${(amount * 5)} points`;
 
         case 'BibleThump':
-            client.say(channel, `[ BibleThump | BibleThump | BibleThump ]  ${user.username} lost ${amount} points`);
-            points.give(channel, -amount, user.username);
-            break;
-
-        case 'ResidentSleeper':
-            client.say(channel, `[ ResidentSleeper | ResidentSleeper | ResidentSleeper ]  ${user.username} won ${(amount * 2) - amount} points`);
-            points.give(channel, (amount * 2) - amount, user.username);
-            break;
-
-        case 'Kappa':
-            client.say(channel, `[ Kappa | Kappa | Kappa ]  ${user.username} won ${(amount * 3) - amount} points`);
-            points.give(channel, (amount * 3) - amount, user.username);
-            break;
-
-        case 'SeemsGood':
-            client.say(channel, `[ SeemsGood | SeemsGood | SeemsGood ]  ${user.username} won ${(amount * 4) - amount} points`);
-            points.give(channel, (amount * 4) - amount, user.username);
-            break;
+            points.give(channel, -amount * 2, user.username);
+            return `${user.username} lost ${amount * 2} points`;
 
         case 'WutFace':
-            let rnd = Math.floor(Math.random() * (9 - 0 + 1)) + 0;
-            give_reward(slots[rnd]);
-            break;
+            let rnd = Math.floor(Math.random() * (3 - 0 + 1)) + 0;
+            return reward(channel, user, amount, rnd);
     }
 }
 
 const gamble = (channel, user, message) => {
-    let slots = ['Kreygasm', 'NotLikeThis', 'Jebaited', 'TriHard', 'PogChamp', 'CoolCat', 'BibleThump', 'ResidentSleeper', 'Kappa', 'SeemsGood', 'WutFace'];
     let user_points = points.get(channel, user.username);
     let amount;
 
@@ -80,18 +46,18 @@ const gamble = (channel, user, message) => {
     } else if ((user_points - amount) < 0) {
         client.say(channel, `@${user.username} you dont have enough points`);
     } else {
-        let slot_1 = Math.floor(Math.random() * (10 - 0 + 1)) + 0;
-        let slot_2 = Math.floor(Math.random() * (10 - 0 + 1)) + 0;
-        let slot_3 = Math.floor(Math.random() * (10 - 0 + 1)) + 0;
+        let slot_1 = Math.floor(Math.random() * (4 - 0 + 1)) + 0;
+        let slot_2 = Math.floor(Math.random() * (4 - 0 + 1)) + 0;
+        let slot_3 = Math.floor(Math.random() * (4 - 0 + 1)) + 0;
 
         if (slot_1 == slot_2 && slot_2 == slot_3 && slot_3 == slot_1) {
-            give_reward(slots[slot_1]);
+            let reward_message = reward(channel, user, amount, slot_1);
+            client.say(channel, `[ ${slots[slot_1]} | ${slots[slot_2]} | ${slots[slot_3]} ] ${reward_message}`);
         } else if (slot_1 != slot_2 && slot_2 != slot_3 && slot_3 != slot_1){
             client.say(channel, `[ ${slots[slot_1]} | ${slots[slot_2]} | ${slots[slot_3]} ]  ${user.username} lost ${amount} points`);
             points.give(channel, -amount, user.username);
         } else {
-            client.say(channel, `[ ${slots[slot_1]} | ${slots[slot_2]} | ${slots[slot_3]} ]  ${user.username} won ${amount * 2} points`);
-            points.give(channel, amount * 2, user.username);
+            client.say(channel, `[ ${slots[slot_1]} | ${slots[slot_2]} | ${slots[slot_3]} ]  ${user.username} won his ${amount} back`);
         }
     }
 

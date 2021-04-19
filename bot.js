@@ -156,7 +156,7 @@ client.on('message', async (channel, user, message, self) => { //command listene
             gtp(channel);
             break;
 
-        case '&commands':
+        case '&command':
             if (whitelisted(channel, user)) {
                 const command = require('./commands/command');
                 command(channel, user, message);
