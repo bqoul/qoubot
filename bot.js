@@ -155,5 +155,23 @@ client.on('message', async (channel, user, message, self) => { //command listene
             gamble(channel, user, message);
             gtp(channel);
             break;
+
+        case '&commands':
+            if (whitelisted(channel, user)) {
+                const command = require('./commands/command');
+                command(channel, user, message);
+            } else {
+                client.say(channel, `@${user.username} this command is only for whitelisted users`);
+            }
+            gtp(channel);
+            break;
+
+        default:
+            let commands = JSON.parse(fs.readFileSync('data/commands.json'));
+            if (message.split(' ')[0] in commands[channel]) {
+                client.say(channel, commands[channel][message.split(' ')[0]]);
+            }
+            gtp(channel);
+            break;
     }
 });

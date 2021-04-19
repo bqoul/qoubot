@@ -43,3 +43,6 @@
   - &quiz stop - stop the quiz
   - &quiz timeout - set custom timeout in seconds ("&quiz timeout 60" will set the timeout to 60 seconds), default timeout is 5 minutes
   - &quiz next - send next question, reseting the timeout if quiz was running
+* &commands - add\remove custom commands [usage example]:
+  - &commands add &examle this command is example - will add &example commad which will say 'this command is example' on call
+  - &commands remove &example - will remove &example command
