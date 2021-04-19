@@ -25,7 +25,7 @@ const gamble = (channel, user, message) => {
         let slot_3 = Math.floor(Math.random() * (10 - 0 + 1)) + 0;
 
         if (slot_1 == slot_2 && slot_2 == slot_3 && slot_3 == slot_1) {
-            give_reward(slot_1);
+            give_reward(slots[slot_1]);
         } else if (slot_1 != slot_2 && slot_2 != slot_3 && slot_3 != slot_1){
             client.say(channel, `[ ${slots[slot_1]} | ${slots[slot_2]} | ${slots[slot_3]} ]  ${user.username} lost ${amount} points`);
             points.give(channel, -amount, user.username);
