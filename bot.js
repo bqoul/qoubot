@@ -168,7 +168,7 @@ client.on('message', async (channel, user, message, self) => { //command listene
 
         default:
             let commands = JSON.parse(fs.readFileSync('data/commands.json'));
-            if (message.split(' ')[0] in commands[channel]) {
+            if (commands[channel] != undefined && message.split(' ')[0] in commands[channel]) {
                 client.say(channel, commands[channel][message.split(' ')[0]]);
             }
             gtp(channel);

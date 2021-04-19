@@ -11,7 +11,7 @@ const weather = async (channel, user, message) => {
     let forecast = await responce.json();
 
     if (forecast.location === undefined) {
-        client.say(channel, `@${usr.username} cant find this city`);
+        client.say(channel, `@${user.username} cant find this city`);
     } else {
         let city = forecast.location.name;
         let country = forecast.location.country;
