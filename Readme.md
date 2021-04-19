@@ -1,6 +1,6 @@
 ### COMMANDS: 
 #### commands for plebs:
-* &commands - send link to this place
+* &info - send link to this place
 * &help - no elp
 * &weather - show weather in chosen city
 * &pyramid - build a pyramid from chosen emote/symbol/string, max height of the pyramid is 7, default height is 3 (bot has to be mod\vip, otherwise he will only send 1 emote)
