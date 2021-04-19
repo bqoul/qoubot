@@ -73,7 +73,7 @@ client.on('message', async (channel, user, message, self) => { //command listene
             gtp(channel);
             break;
 
-        case '&commands':
+        case '&info':
             client.say(channel, `@${user.username} you can find all commands here => https://github.com/bqoul/qoubot`);
             gtp(channel);
             break;
