@@ -4,51 +4,51 @@ const points = require('./points');
 const give_reward = (slot) => {
     switch(slot) {
         case 'Kreygasm':
-            client.say(channel, `[ ${slots[slot_1]} | ${slots[slot_2]} | ${slots[slot_3]} ]  ${user.username} won ${(amount * 5) - amount} points`);
+            client.say(channel, `[ Kreygasm | Kreygasm | Kreygasm ]  ${user.username} won ${(amount * 5) - amount} points`);
             points.give(channel, (amount * 5) - amount, user.username);
             break;
 
         case 'NotLikeThis':
-            client.say(channel, `[ ${slots[slot_1]} | ${slots[slot_2]} | ${slots[slot_3]} ]  ${user.username} lost ${amount * 2} points`);
+            client.say(channel, `[ NotLikeThis | NotLikeThis | NotLikeThis ]  ${user.username} lost ${amount * 2} points`);
             points.give(channel, -(amount * 2), user.username);
             break;
 
         case 'Jebaited':
-            client.say(channel, `[ ${slots[slot_1]} | ${slots[slot_2]} | ${slots[slot_3]} ]  ${user.username} won his ${amount} points back`);
+            client.say(channel, `[ Jebaited | Jebaited | Jebaited ]  ${user.username} won his ${amount} points back`);
             break;
 
         case 'TriHard':
-            client.say(channel, `[ ${slots[slot_1]} | ${slots[slot_2]} | ${slots[slot_3]} ]  ${user.username} won ${(amount * 10) - amount} points`);
+            client.say(channel, `[ TriHard | TriHard | TriHard ]  ${user.username} won ${(amount * 10) - amount} points`);
             points.give(channel, (amount * 10) - amount, user.username);
             break;
 
         case 'PogChamp':
-            client.say(channel, `[ ${slots[slot_1]} | ${slots[slot_2]} | ${slots[slot_3]} ]  ${user.username} won ${(amount * 6) - amount} points`);
+            client.say(channel, `[ PogChamp | PogChamp | PogChamp ]  ${user.username} won ${(amount * 6) - amount} points`);
             points.give(channel, (amount * 6) - amount, user.username);
             break;
 
         case 'CoolCat':
-            client.say(channel, `[ ${slots[slot_1]} | ${slots[slot_2]} | ${slots[slot_3]} ]  ${user.username} won 1337 points`);
+            client.say(channel, `[ CoolCat | CoolCat | CoolCat ]  ${user.username} won 1337 points`);
             points.give(channel, 1337, user.username);
             break;
 
         case 'BibleThump':
-            client.say(channel, `[ ${slots[slot_1]} | ${slots[slot_2]} | ${slots[slot_3]} ]  ${user.username} lost ${amount} points`);
+            client.say(channel, `[ BibleThump | BibleThump | BibleThump ]  ${user.username} lost ${amount} points`);
             points.give(channel, -amount, user.username);
             break;
 
         case 'ResidentSleeper':
-            client.say(channel, `[ ${slots[slot_1]} | ${slots[slot_2]} | ${slots[slot_3]} ]  ${user.username} won ${(amount * 2) - amount} points`);
+            client.say(channel, `[ ResidentSleeper | ResidentSleeper | ResidentSleeper ]  ${user.username} won ${(amount * 2) - amount} points`);
             points.give(channel, (amount * 2) - amount, user.username);
             break;
 
         case 'Kappa':
-            client.say(channel, `[ ${slots[slot_1]} | ${slots[slot_2]} | ${slots[slot_3]} ]  ${user.username} won ${(amount * 3) - amount} points`);
+            client.say(channel, `[ Kappa | Kappa | Kappa ]  ${user.username} won ${(amount * 3) - amount} points`);
             points.give(channel, (amount * 3) - amount, user.username);
             break;
 
         case 'SeemsGood':
-            client.say(channel, `[ ${slots[slot_1]} | ${slots[slot_2]} | ${slots[slot_3]} ]  ${user.username} won ${(amount * 4) - amount} points`);
+            client.say(channel, `[ SeemsGood | SeemsGood | SeemsGood ]  ${user.username} won ${(amount * 4) - amount} points`);
             points.give(channel, (amount * 4) - amount, user.username);
             break;
 
