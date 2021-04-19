@@ -67,7 +67,7 @@ const gamble = (channel, user, message) => {
     if (message.split(' ')[1] === 'all') {
         amount = user_points;
     } else if (Number.isNaN(parseInt(message.split(' ')[1]))){
-        client.say(channel, `@${user.username} how do you think im suppose to roll this "${message.slice(8)}" points?!`);
+        client.say(channel, `@${user.username} how do you think im supposed to roll this "${message.slice(8)}" points?!`);
         return;
     } else {
         amount = parseInt(message.split(' ')[1]);
@@ -75,6 +75,8 @@ const gamble = (channel, user, message) => {
 
     if (user_points < 100) {
         client.say(channel, `@${user.username} you need at least 100 points to gamble, you have ${user_points}`);
+    } else if (amount < 0) {
+        client.say(channel, `@${user.username} how do you think im supposed to roll this "${message.slice(8)}" points?!`);
     } else if ((user_points - amount) < 0) {
         client.say(channel, `@${user.username} you dont have enough points`);
     } else {
