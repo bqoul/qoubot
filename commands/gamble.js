@@ -90,7 +90,7 @@ const give_reward = (slot) => {
 
         case 'WutFace':
             let rnd = Math.floor(Math.random() * (9 - 0 + 1)) + 0;
-            give_reward(rnd);
+            give_reward(slots[rnd]);
             break;
     }
 }
