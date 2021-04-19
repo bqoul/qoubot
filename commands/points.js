@@ -44,15 +44,17 @@ const command = (channel, user, message) => {
     let points;
     
     switch(message.split(' ')[1]) {
-        case undefined:
-            points = get(channel, user.username);
-            client.say(channel, `@${user.username} you have ${points} points`);
-            break;
-
         case 'give':
             let user_points = get(channel, user.username);
-            let amount = parseInt(message.split(' ')[3]);
-            if (user_points - amount >= 0) {
+            if (message.split(' ')[3] === 'all'){
+                let all_points = JSON.parse(fs.readFileSync('data/points.json'));
+                all_points[channel][user.username] -= user_points;
+                fs.writeFileSync('data/points.json', JSON.stringify(all_points, null, 1));
+
+                give(channel, user_points, message.split(' ')[2]);
+                client.say(channel, `@${user.username} transfer was successful, now you have ${all_points[channel][user.username]} points`);
+            } else if (user_points - amount >= 0) {
+                let amount = parseInt(message.split(' ')[3]);
                 let all_points = JSON.parse(fs.readFileSync('data/points.json'));
                 all_points[channel][user.username] = user_points - amount;
                 fs.writeFileSync('data/points.json', JSON.stringify(all_points, null, 1));
@@ -62,6 +64,11 @@ const command = (channel, user, message) => {
             } else {
                 client.say(channel, `@${user.username} you have only ${user_points} points`);
             }
+            break;
+
+        case undefined:
+            points = get(channel, user.username);
+            client.say(channel, `@${user.username} you have ${points} points`);
             break;
 
         default:
