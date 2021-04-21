@@ -4,19 +4,16 @@ const fs = require('fs');
 client.connect();
 
 //global timeout protection
-let waiting = false;
-let waiting_channels = [];
-
 const sleep = async (ms) => {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+let waiting = [];
+
 const gtp = async (channel) => {
-    let pos = waiting_channels.push(channel) - 1; //pushing channel in and getting its position
-    waiting = true;                               //so i can disable command listener only for channel in which command was used
+    let position = waiting.push(channel) - 1; //pushing channel in and getting its position
     await sleep(1500);
-    waiting_channels.splice(pos);
-    waiting = false;
+    waiting.splice(position);
 }
 
 client.on('message', async (channel, user, message, self) => { //message listener
@@ -62,7 +59,7 @@ client.on('message', async (channel, user, message, self) => { //message listene
 })
 
 client.on('message', async (channel, user, message, self) => { //command listener are separated cause i dont
-    if (waiting_channels.includes(channel) && waiting || self) { //want gtp to block message listener
+    if (waiting.includes(channel) || self) { //want gtp to block message listener
         return;
     }
 
@@ -170,8 +167,8 @@ client.on('message', async (channel, user, message, self) => { //command listene
             let commands = JSON.parse(fs.readFileSync('data/commands.json'));
             if (commands[channel] != undefined && message.split(' ')[0] in commands[channel]) {
                 client.say(channel, commands[channel][message.split(' ')[0]]);
+                gtp(channel);
             }
-            gtp(channel);
             break;
     }
 });
