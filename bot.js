@@ -164,9 +164,14 @@ client.on('message', async (channel, user, message, self) => { //command listene
             break;
 
         default:
-            let commands = JSON.parse(fs.readFileSync('data/commands.json'));
-            if (commands[channel] != undefined && message.split(' ')[0] in commands[channel]) {
-                client.say(channel, commands[channel][message.split(' ')[0]]);
+            let commands;
+            try {
+                commands = JSON.parse(fs.readFileSync(`data/commands/${channel}.json`));
+            } catch {
+                break;
+            }
+            if (message.split(' ')[0] in commands) {
+                client.say(channel, commands[message.split(' ')[0]]);
                 gtp(channel);
             }
             break;
