@@ -32,10 +32,10 @@ client.on('message', async (channel, user, message, self) => { //message listene
     const quiz = require('./commands/quiz');
     const points = require('./commands/points');
     let quiz_data = quiz.get_quiz_data(channel);
-    if (message.toLowerCase().includes(quiz_data[channel].answer.toLowerCase()) && !quiz_data[channel].answered) {
-        quiz_data[channel].answered = true;
+    if (message.toLowerCase().includes(quiz_data.answer.toLowerCase()) && !quiz_data.answered) {
+        quiz_data.answered = true;
 
-        let time = quiz_data[channel].timeout / 1000 - quiz_data[channel].time_remaining; //need this to sort amount of points for reward
+        let time = quiz_data.timeout / 1000 - quiz_data.time_remaining; //need this to sort amount of points for reward
         let pts;
         //less time user needs to answer, more points he gets
         if (time <= 10) {
@@ -52,9 +52,9 @@ client.on('message', async (channel, user, message, self) => { //message listene
             pts = 100;
         }
 
-        client.say(channel, `@${user.username} correct! the answer was [${quiz_data[channel].answer}], you received ${pts} points`);
+        client.say(channel, `@${user.username} correct! the answer was [${quiz_data.answer}], you received ${pts} points`);
 
-        fs.writeFileSync('data/quiz.json', JSON.stringify(quiz_data, null, 1));
+        fs.writeFileSync(`data/quiz/${channel}.json`, JSON.stringify(quiz_data, null, 1));
     }
 })
 
