@@ -24,7 +24,7 @@ client.on('message', async (channel, user, message, self) => { //message listene
     //check repeats
     const repeat = require('./commands/repeat');
     let repeat_data = repeat.get_repeat_data(channel);
-    if (user.username.toLowerCase() === repeat_data[channel].target.toLowerCase()) {
+    if (user.username.toLowerCase() === repeat_data.target.toLowerCase()) {
         repeat.run(channel, message);
     }
 
