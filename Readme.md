@@ -170,6 +170,6 @@
 
 ![](https://i.imgur.com/W5MjdU9.png)
 
-* ###### get points for answering to the quiz, the reward depends on how long it took to answer
+* ###### get points for answering to the quiz, reward depends on how long it took to answer
 
 ![](https://i.imgur.com/L1Uu8Mf.png)
