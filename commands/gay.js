@@ -1,7 +1,7 @@
 const client = require('../client');
 
 const gay = (channel, user, message) => {
-    let persent = Math.floor(Math.random() * (100 - 0 + 1)) + 0;
+    let persent = ~~(Math.random() * (100 - 0 + 1)) + 0;
     let target = message.split(' ')[1];
 
     if (target === undefined) {

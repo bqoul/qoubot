@@ -1,7 +1,7 @@
 const client = require('../client');
 
 const iq = (channel, user, message) => {
-    let iq = Math.floor(Math.random() * (150 - -1 + 1)) + -1;
+    let iq = ~~(Math.random() * (150 - -1 + 1)) + -1;
     let target = message.split(' ')[1];
 
     if (target === undefined) {
