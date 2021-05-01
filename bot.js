@@ -39,19 +39,15 @@ client.on('message', async (channel, user, message, self) => { //message listene
         let pts;
         //less time user needs to answer, more points he gets
         if (time <= 10) {
-            points.get(channel, user.username); //getting points to avoid 'target property is undefined' when user has no points in points.json
-            points.give(channel, 300, user.username);
             pts = 300;
         } else if (time <= 20) {
-            points.get(channel, user.username);
-            points.give(channel, 200, user.username);
             pts = 200;
         } else {
-            points.get(channel, user.username);
-            points.give(channel, 100, user.username);
             pts = 100;
         }
 
+        points.get(channel, user.username); //getting points to avoid 'target property is undefined' when user has no points in points.json
+        points.give(channel, pts, user.username);
         client.say(channel, `@${user.username} correct! the answer was [${quiz_data.answer}], you received ${pts} points`);
 
         fs.writeFileSync(`data/quiz/${channel}.json`, JSON.stringify(quiz_data, null, 1));
@@ -177,7 +173,7 @@ client.on('message', async (channel, user, message, self) => { //command listene
             gtp(channel);
             break;
 
-        default:
+        default: //if none of the commands matched check for custom ones
             const command = require('./commands/command');
             const counter = require('./commands/counter');
 
