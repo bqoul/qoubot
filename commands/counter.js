@@ -20,7 +20,7 @@ const set = (channel, user, message) => {
                 Object.defineProperty(counters, message.split(' ')[2], {
                     value: {
                         text: text,
-                        times: 1,
+                        times: 0,
                     },
                     configurable: true,
                     writable: true,

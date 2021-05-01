@@ -183,8 +183,8 @@ client.on('message', async (channel, user, message, self) => { //command listene
                 client.say(channel, commands[message.split(' ')[0]]);
                 gtp(channel);
             } else if (message.split(' ')[0] in counters) {
-                client.say(channel, counters[message.split(' ')[0]].text.replace('&', counters[message.split(' ')[0]].times));
                 counters[message.split(' ')[0]].times += 1;
+                client.say(channel, counters[message.split(' ')[0]].text.replace('&', counters[message.split(' ')[0]].times));
                 fs.writeFileSync(`data/counters/${channel}.json`, JSON.stringify(counters, null, 1));
                 gtp(channel);
             }
