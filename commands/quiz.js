@@ -20,7 +20,7 @@ const run = (channel, user, message) => {
         client.say(channel, `/me question from [${quiz_category}] category: ${quiz_question}`)
 
         clearInterval(quiz_intervals.timer_interval);
-        quiz.time_remaining = quiz.timeout / 1000;
+        quiz.time_remaining = quiz.delay / 1000;
         quiz_intervals.timer_interval = setInterval(quiz_timer, 1000);
 
         //logging the answer in console for debugging purpuses (forsenCD)
@@ -35,7 +35,7 @@ const run = (channel, user, message) => {
         quiz = get_quiz_data(channel);
         quiz.time_remaining -= 1;
 
-        if (quiz.timeout / 1000 - quiz.time_remaining === 30 && !quiz.answered) { //send the answer in chat if no one gave the correct answer for 30 seconds
+        if (quiz.delay / 1000 - quiz.time_remaining === 30 && !quiz.answered) { //send the answer in chat if no one gave the correct answer for 30 seconds
             client.say(channel, `/me no one gave the correct answer, it was [${quiz.answer}]`);
             quiz.answered = true;
         }
@@ -53,7 +53,7 @@ const run = (channel, user, message) => {
 
                     quiz_run();
                     quiz_intervals = get_guiz_intervals(channel);
-                    quiz_intervals.interval = setInterval(quiz_run, quiz.timeout);
+                    quiz_intervals.interval = setInterval(quiz_run, quiz.delay);
 
                     fs.writeFileSync(`data/quiz/${channel}.json`, JSON.stringify(quiz, null, 1));
                 }
@@ -81,18 +81,18 @@ const run = (channel, user, message) => {
             }
             break;
 
-        case 'timeout':
+        case 'delay':
             if (whitelisted(channel, user)) {
                 if (message.split(' ')[2] < 60) {
-                    client.say(channel, `@${user.username} timeout cant be less than 60 seconds`);
+                    client.say(channel, `@${user.username} delay cant be less than 60 seconds`);
                 } else if (Number.isNaN(message.split(' ')[2] * 1000)) { //checking if user sent actual number, not 'lsakdjf\*#$@()'
                     client.say(channel, `@${user.username} this is not a number`);
                 } else if (quiz.running) {
-                    client.say(channel, `@${user.username} cant change timeout while quiz is running`);
+                    client.say(channel, `@${user.username} cant change delay while quiz is running`);
                 } else {
-                    quiz.timeout = message.split(' ')[2] * 1000;
-                    quiz.time_remaining = quiz.timeout / 1000;
-                    client.say(channel, `@${user.username} timeout has been set to ${message.split(' ')[2]} seconds`);
+                    quiz.delay = message.split(' ')[2] * 1000;
+                    quiz.time_remaining = quiz.delay / 1000;
+                    client.say(channel, `@${user.username} delay has been set to ${message.split(' ')[2]} seconds`);
 
                     fs.writeFileSync(`data/quiz/${channel}.json`, JSON.stringify(quiz, null, 1));
                 }
@@ -108,7 +108,7 @@ const run = (channel, user, message) => {
 
                     quiz_run();
                     quiz_intervals = get_guiz_intervals(channel);
-                    quiz_intervals.interval = setInterval(quiz_run, quiz.timeout);
+                    quiz_intervals.interval = setInterval(quiz_run, quiz.delay);
                 } else {
                     quiz_run();
                 }
@@ -154,7 +154,7 @@ function get_quiz_data(channel) {
         fs.mkdirSync('data/quiz', {recursive: true});
         fs.writeFileSync(`data/quiz/${channel}.json`, JSON.stringify({
                 running: false,
-                timeout: 300000,
+                delay: 300000,
                 answer: '',
                 answered: true,
                 time_remaining: 300,

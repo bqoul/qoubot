@@ -1,7 +1,7 @@
 ![](https://i.imgur.com/lTVoe0x.jpg)
 
 ## about
-##### **qoubot** is an open source bot made by me just for fun :D
+##### **qoubot** is an open source twitch bot made for fun :D
 ##### if you want to have this bot on your channel, or have ideas for new commands contact me in discord (bqoul#7013) or telegram (t.me/bqoul)
 
 ## commands
@@ -102,7 +102,7 @@
 
 ------------
 #### <!> commands for whitelisted users <!> 
-###### following commands can only be used by broadcaster, mods
+###### following commands can only be used by broadcaster or mods
 
 ------------
 
@@ -146,3 +146,30 @@
 ###### and remove them whey they become annoying
 
 ![](https://i.imgur.com/YV44jAK.png)
+
+## quiz
+###### qoubot can also run quizes on your channel
+
+* ###### start the quiz
+
+![](https://i.imgur.com/ECkfkHh.png)
+
+* ###### stop the quiz
+
+![](https://i.imgur.com/olRYRLe.png)
+
+* ###### change the delay between questions, default delay is 300 seconds
+
+![](https://i.imgur.com/ct3Gpmk.png)
+
+* ###### rush next question without waiting for the delay
+
+![](https://i.imgur.com/rGFGAw1.png)
+
+* ###### check the time if left before the next question
+
+![](https://i.imgur.com/W5MjdU9.png)
+
+* ###### get points for answering to the quiz, the reward depends on how long it took to answer
+
+![](https://i.imgur.com/L1Uu8Mf.png)

@@ -35,7 +35,7 @@ client.on('message', async (channel, user, message, self) => { //message listene
     if (message.toLowerCase().includes(quiz_data.answer.toLowerCase()) && !quiz_data.answered) {
         quiz_data.answered = true;
 
-        let time = quiz_data.timeout / 1000 - quiz_data.time_remaining; //need this to sort amount of points for reward
+        let time = quiz_data.delay / 1000 - quiz_data.time_remaining; //need this to sort amount of points for reward
         let pts;
         //less time user needs to answer, more points he gets
         if (time <= 10) {
