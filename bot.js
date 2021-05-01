@@ -156,7 +156,17 @@ client.on('message', async (channel, user, message, self) => { //command listene
         case '&command':
             if (whitelisted(channel, user)) {
                 const command = require('./commands/command');
-                command(channel, user, message);
+                command.set(channel, user, message);
+            } else {
+                client.say(channel, `@${user.username} this command is only for whitelisted users`);
+            }
+            gtp(channel);
+            break;
+
+        case '&counter':
+            if (whitelisted(channel, user)) {
+                const counter = require('./commands/counter');
+                counter.set(channel, user, message);
             } else {
                 client.say(channel, `@${user.username} this command is only for whitelisted users`);
             }
@@ -164,14 +174,18 @@ client.on('message', async (channel, user, message, self) => { //command listene
             break;
 
         default:
-            let commands;
-            try {
-                commands = JSON.parse(fs.readFileSync(`data/commands/${channel}.json`));
-            } catch {
-                break;
-            }
+            const command = require('./commands/command');
+            const counter = require('./commands/counter');
+
+            let commands = command.get(channel);
+            let counters = counter.get(channel);
             if (message.split(' ')[0] in commands) {
                 client.say(channel, commands[message.split(' ')[0]]);
+                gtp(channel);
+            } else if (message.split(' ')[0] in counters) {
+                client.say(channel, counters[message.split(' ')[0]].text.replace('&', counters[message.split(' ')[0]].times));
+                counters[message.split(' ')[0]].times += 1;
+                fs.writeFileSync(`data/counters/${channel}.json`, JSON.stringify(counters, null, 1));
                 gtp(channel);
             }
             break;

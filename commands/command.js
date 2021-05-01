@@ -1,16 +1,19 @@
 const client = require('../client');
 const fs = require('fs');
 
-const command = (channel, user, message) => {
-    let commands;
-
+const get = (channel) => {
     try {
-        commands = JSON.parse(fs.readFileSync(`data/commands/${channel}.json`));
+        return JSON.parse(fs.readFileSync(`data/commands/${channel}.json`));
     } catch {
         fs.mkdirSync('data/commands', {recursive: true});
         fs.writeFileSync(`data/commands/${channel}.json`, JSON.stringify({}, null, 1));
-        commands = JSON.parse(fs.readFileSync(`data/commands/${channel}.json`));
+        return JSON.parse(fs.readFileSync(`data/commands/${channel}.json`));
     }
+
+}
+
+const set = (channel, user, message) => {
+    let commands = get(channel);
 
     switch (message.split(' ')[1]) {
         case 'add':
@@ -42,4 +45,5 @@ const command = (channel, user, message) => {
     }
 }
 
-module.exports = command;
+module.exports.get = get;
+module.exports.set = set;
