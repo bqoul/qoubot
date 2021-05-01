@@ -42,5 +42,5 @@
   - &command add &examle this command is example - will add &example command which will say 'this command is example' on call
   - &command remove &example - will remove &example command
 * &counter - add\remove custom counter [usage example]:
-  - &counter add &examle this command was called & times - will add &example countes which will say 'this command was called (amount of times it was called) times' on call
+  - &counter add &examle this command was called & times - will add &example counter which will say 'this command was called (amount of times it was called) times' on call
   - &counter remove &example - will remove &example counter
