@@ -37,7 +37,7 @@
 ------------
 
 #### &vanish
-###### delete all your messageses by timeouting you for 1 second
+###### delete all your messageses by timeouting yourself for 1 second
 
 ![](https://i.imgur.com/eplFy4M.png)
 
@@ -83,7 +83,7 @@
 ###### why count yourself when you can make qoubot do this hard work?
 
 ![](https://i.imgur.com/9WgbLAE.png)
-> btw it can also count sin, cos, log, and a whole bunch of other stuff
+> ###### btw it can also count sin, cos, log, and a whole bunch of other stuff
 
 ------------
 
@@ -102,7 +102,7 @@
 
 ------------
 #### <!> commands for whitelisted users <!> 
-###### only broadcaster, mods or vips can use these commands
+###### following commands can only be used by broadcaster, mods
 
 ------------
 
