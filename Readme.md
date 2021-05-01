@@ -1,10 +1,10 @@
 ![](https://i.imgur.com/lTVoe0x.jpg)
 
-## about
+##about
 #####**qoubot** is an open source bot made by me just for fun :D
 #####if you want to have this bot on your channel, or have ideas for new commands contact me in discord (bqoul#7013) or telegram (t.me/bqoul)
 
-## commands
+##commands
 * #####&info
 ######send a link  to this place
 
