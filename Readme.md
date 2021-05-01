@@ -5,44 +5,44 @@
 ##### if you want to have this bot on your channel, or have ideas for new commands contact me in discord (bqoul#7013) or telegram (t.me/bqoul)
 
 ## commands
-##### &info
+#### &info
 ###### send a link  to this place
 
 ![](https://i.imgur.com/MArCGlV.png)
-##### &weather
+#### &weather
 ###### search for weather in chosen city
 
 ![](https://i.imgur.com/zoOhb7G.png)
-##### &pyramid
+#### &pyramid
 ###### biuld a pyramid from chosen emote
 
 ![](https://i.imgur.com/zw0bomO.png)
 ###### you can also choose height of the pyramid
 
 ![](https://i.imgur.com/Ld2twSB.png)
-##### &shuffle
+#### &shuffle
 ###### shuffle everything you enter after the command
 
 ![](https://i.imgur.com/mKn3d0K.png)
-##### &vanish
+#### &vanish
 ###### delete all your messageses by timeouting you for 1 second
 
 ![](https://i.imgur.com/eplFy4M.png)
-##### &gay
+#### &gay
 ###### reval your true nature [![](https://static-cdn.jtvnw.net/emoticons/v1/55338/1.0)](http://https://static-cdn.jtvnw.net/emoticons/v1/55338/1.0)
 
 ![](https://i.imgur.com/da6wLhu.png)
 ###### or true nature of any other person
 
 ![](https://i.imgur.com/80cKxo5.png)
-##### &iq
+#### &iq
 ###### quick and easy way to test your iq
 
 ![](https://i.imgur.com/NrNqPAz.png)
 ###### or iq of another person
 
 ![](https://i.imgur.com/y4LnWVn.png)
-##### &points
+#### &points
 ###### check your amount of points on the channel
 
 ![](https://i.imgur.com/ZFip1Fi.png)
@@ -52,13 +52,13 @@
 ###### give points to someone
 
 ![](https://i.imgur.com/WvXabjO.png)
-* ##### &count
+#### &count
 ###### why count yourself when you can make qoubot do this hard work?
 
 ![](https://i.imgur.com/9WgbLAE.png)
 > btw it can also count sin, cos, log, and a whole bunch of other stuff
 
-##### &gamble
+#### &gamble
 ###### GAMBA GAMBA [![](https://cdn.betterttv.net/emote/566c9fde65dbbdab32ec053e/1x)](https://cdn.betterttv.net/emote/566c9fde65dbbdab32ec053e/1x) time to gamble all your savings away
 * ###### match 2 emotes and get your rate back
 * ###### match 3 emotes and win a SPECIAL prize:
@@ -74,18 +74,18 @@
 ------------
 #### <!> commands for whitelisted users <!> 
 ###### only broadcaster, mods or vips can use these commands
-##### &repeat
+#### &repeat
 ###### do a little trolling and ask qoubot to repeat all messages sent by the person [![](https://cdn.betterttv.net/emote/54fa8f1401e468494b85b537/1x)](https://cdn.betterttv.net/emote/54fa8f1401e468494b85b537/1x) 
 
 ![](https://i.imgur.com/uxxcWyl.png)
 ###### or make it even worse and ask qoubot to shuffle all his messages [![](https://cdn.betterttv.net/emote/54fa8f1401e468494b85b537/1x)](https://cdn.betterttv.net/emote/54fa8f1401e468494b85b537/1x) 
 
 ![](https://i.imgur.com/NKa1uRg.png)
-##### &stop
+#### &stop
 ###### ask qoubot to stop repeating messages (he will be upset about it)
 
 ![](https://i.imgur.com/602m0UX.png)
-##### &command
+#### &command
 ###### add custom commands available just on your channel
 
 ![](https://i.imgur.com/3LzuKT1.png)
@@ -94,7 +94,7 @@
 ###### or remove custom commands you dont like anymore
 
 ![](https://i.imgur.com/NLMkgAY.png)
-##### &counter
+#### &counter
 ###### just like custom commands, you can add couters to your channel
 
 ![](https://i.imgur.com/jZGX2vN.png)
