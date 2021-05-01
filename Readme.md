@@ -72,9 +72,6 @@
 ![](https://i.imgur.com/SInRuRU.png)
 ###### give points to someone
 
-------------
-
-
 ![](https://i.imgur.com/WvXabjO.png)
 
 ------------
