@@ -166,7 +166,7 @@
 
 ![](https://i.imgur.com/rGFGAw1.png)
 
-* ###### check the remaining time before the next question
+* ###### check remaining time before the next question
 
 ![](https://i.imgur.com/W5MjdU9.png)
 
