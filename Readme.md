@@ -140,6 +140,8 @@
 
 ![](https://i.imgur.com/jZGX2vN.png)
 
+###### every time user calls a counter it adds +1 to the count
+
 ![](https://i.imgur.com/sPHBrq6.png)
 ###### and remove them whey they become annoying
 
