@@ -91,11 +91,11 @@
 ###### GAMBA GAMBA [![](https://cdn.betterttv.net/emote/566c9fde65dbbdab32ec053e/1x)](https://cdn.betterttv.net/emote/566c9fde65dbbdab32ec053e/1x) time to gamble all your savings away
 * ###### match 2 emotes and get your rate back
 * ###### match 3 emotes and win a SPECIAL prize:
-  - [![](https://static-cdn.jtvnw.net/emoticons/v1/120232/1.0)](https://static-cdn.jtvnw.net/emoticons/v1/120232/1.0) - your rate x10
-  - [![](https://static-cdn.jtvnw.net/emoticons/v1/305954156/1.0)](https://static-cdn.jtvnw.net/emoticons/v1/305954156/1.0) - your rate x5
-  - [![](https://static-cdn.jtvnw.net/emoticons/v1/114836/1.0)](https://static-cdn.jtvnw.net/emoticons/v1/114836/1.0) - get your rate back
-  - [![](https://static-cdn.jtvnw.net/emoticons/v1/86/1.0)](https://static-cdn.jtvnw.net/emoticons/v1/86/1.0) - lose your rate and even more
-  - [![](https://static-cdn.jtvnw.net/emoticons/v1/28087/1.0)](https://static-cdn.jtvnw.net/emoticons/v1/28087/1.0) - random roll between all other prizes
+  - [![](https://static-cdn.jtvnw.net/emoticons/v1/120232/1.0)](https://static-cdn.jtvnw.net/emoticons/v1/120232/1.0) - ###### your rate x10
+  - [![](https://static-cdn.jtvnw.net/emoticons/v1/305954156/1.0)](https://static-cdn.jtvnw.net/emoticons/v1/305954156/1.0) - ###### your rate x5
+  - [![](https://static-cdn.jtvnw.net/emoticons/v1/114836/1.0)](https://static-cdn.jtvnw.net/emoticons/v1/114836/1.0) - ###### get your rate back
+  - [![](https://static-cdn.jtvnw.net/emoticons/v1/86/1.0)](https://static-cdn.jtvnw.net/emoticons/v1/86/1.0) - ###### lose your rate and even more
+  - [![](https://static-cdn.jtvnw.net/emoticons/v1/28087/1.0)](https://static-cdn.jtvnw.net/emoticons/v1/28087/1.0) - ###### random roll between all other prizes
   
 
 ![](https://i.imgur.com/MxTUiOX.png)
