@@ -173,12 +173,17 @@ client.on('message', async (channel, user, message, self) => { //command listene
             gtp(channel);
             break;
 
+        case '&nuke':
+            gtp(channel);
+            break;
+
         default:
             const command = require('./commands/command');
             const counter = require('./commands/counter');
 
             let commands = command.get(channel);
             let counters = counter.get(channel);
+
             if (message.split(' ')[0] in commands) {
                 client.say(channel, commands[message.split(' ')[0]]);
                 gtp(channel);

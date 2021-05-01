@@ -77,7 +77,7 @@
 ------------
 
 #### &count
-###### why count yourself when you can make qoubot do this hard work?
+###### why count yourself when you can make qoubot do this work for you?
 
 ![](https://i.imgur.com/9WgbLAE.png)
 > ###### btw it can also count sin, cos, log, and a whole bunch of other stuff
@@ -140,7 +140,7 @@
 ###### every time user calls a counter it adds +1 to the count
 
 ![](https://i.imgur.com/sPHBrq6.png)
-###### and remove them whey they become annoying
+###### and remove them when they become annoying
 
 ![](https://i.imgur.com/YV44jAK.png)
 
