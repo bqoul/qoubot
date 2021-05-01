@@ -71,7 +71,7 @@ client.on('message', async (channel, user, message, self) => { //command listene
             break;
 
         case '&info':
-            client.say(channel, `@${user.username} you can find all commands here => https://github.com/bqoul/qoubot`);
+            client.say(channel, `@${user.username} information about the bot and all source code here => https://github.com/bqoul/qoubot`);
             gtp(channel);
             break;
 
