@@ -5,9 +5,45 @@ const fs = require('fs');
 
 let quiz_intervals = {};
 
+const get_quiz_data = (channel) => {
+    let quiz;
+    try {
+        quiz = JSON.parse(fs.readFileSync(`data/quiz/${channel}.json`));
+    } catch {
+        fs.mkdirSync('data/quiz', {recursive: true});
+        fs.writeFileSync(`data/quiz/${channel}.json`, JSON.stringify({
+                running: false,
+                delay: 300000,
+                answer: '',
+                answered: true,
+                time_remaining: 300,
+        }, null, 1));
+        quiz = JSON.parse(fs.readFileSync(`data/quiz/${channel}.json`));
+    }
+
+    return quiz;
+}
+
+const get_guiz_intervals = (channel) => {
+    if (!(channel in quiz_intervals)) {
+        Object.defineProperty(quiz_intervals, channel, {
+            value: {
+                interval: undefined,
+                timer_interval: undefined,
+            },
+            enumerable: true,
+            writable: true,
+            configurable: true,
+        });
+    }
+
+    return quiz_intervals;
+}
+
 const run = (channel, user, message) => {
     let quiz = get_quiz_data(channel);
 
+    //defining this function here cause i need to create interval with it
     const quiz_run = async () => {
         let response = await fetch('http://jservice.io/api/random?count=1');
         let quiz_responce = await response.json();
@@ -31,6 +67,7 @@ const run = (channel, user, message) => {
         fs.writeFileSync(`data/quiz/${channel}.json`, JSON.stringify(quiz, null, 1));
     }
 
+    //defining this function here cause i need to create interval with it
     const quiz_timer = async () => { //getting remaining time to the next question, so users can spam '&quiz when'
         quiz = get_quiz_data(channel);
         quiz.time_remaining -= 1;
@@ -144,41 +181,6 @@ function answer_cleaner(msg) { //removing all trash from answer
     }
 
     return msg;
-}
-
-function get_quiz_data(channel) {
-    let quiz;
-    try {
-        quiz = JSON.parse(fs.readFileSync(`data/quiz/${channel}.json`));
-    } catch {
-        fs.mkdirSync('data/quiz', {recursive: true});
-        fs.writeFileSync(`data/quiz/${channel}.json`, JSON.stringify({
-                running: false,
-                delay: 300000,
-                answer: '',
-                answered: true,
-                time_remaining: 300,
-        }, null, 1));
-        quiz = JSON.parse(fs.readFileSync(`data/quiz/${channel}.json`));
-    }
-
-    return quiz;
-}
-
-function get_guiz_intervals(channel) {
-    if (!(channel in quiz_intervals)) {
-        Object.defineProperty(quiz_intervals, channel, {
-            value: {
-                interval: undefined,
-                timer_interval: undefined,
-            },
-            enumerable: true,
-            writable: true,
-            configurable: true,
-        });
-    }
-
-    return quiz_intervals;
 }
 
 module.exports.run = run;
