@@ -156,7 +156,14 @@ const run = (channel, user, message) => {
 
         case 'when':
             if (quiz.running) {
-                client.say(channel, `@${user.username} next question will arrive in ${quiz.time_remaining} seconds`);
+                let min = ~~((quiz.time_remaining % 3600) / 60);
+                let sec = quiz.time_remaining % 60;
+
+                if (min != 0) {
+                    client.say(channel, `@${user.username} next question will arrive in ${min} min ${sec} sec`);
+                } else {
+                    client.say(channel, `@${user.username} next question will arrive in ${sec} sec`);
+                }
             } else {
                 client.say(channel, `@${user.username} quiz is not running currently`);
             }
