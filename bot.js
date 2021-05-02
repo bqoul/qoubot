@@ -21,6 +21,15 @@ client.on('message', async (channel, user, message, self) => { //message listene
         return;
     }
 
+    //check nukes
+    const nuke = require('./commands/nuke');
+    let nukes = nuke.get(channel);
+    for(i = 0; i < nukes.length; i++) {
+        if(message.toLowerCase().includes(nukes[i]) && message.split(' ')[0] != '&nuke') {
+            client.timeout(channel, user.username, 1, 'nuked');
+        }
+    }
+
     //check repeats
     const repeat = require('./commands/repeat');
     let repeat_data = repeat.get_repeat_data(channel);
@@ -170,6 +179,12 @@ client.on('message', async (channel, user, message, self) => { //command listene
             break;
 
         case '&nuke':
+            if (whitelisted(channel, user)) {
+                const nuke = require('./commands/nuke');
+                nuke.run(channel, message, user);
+            } else {
+                client.say(channel, `@${user.username} this command is only for whitelisted users`);
+            }
             gtp(channel);
             break;
 

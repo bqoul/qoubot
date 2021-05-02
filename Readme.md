@@ -144,6 +144,19 @@
 
 ![](https://i.imgur.com/YV44jAK.png)
 
+------------
+
+#### &nuke
+###### tired of chat spamming "[![](https://cdn.frankerfacez.com/emote/475743/1)](https://cdn.frankerfacez.com/emote/475743/1) COCK"? just add this phrase to the nuke list and ban everyone (only for 1 second in not a monster)
+
+![](https://i.imgur.com/xmtuktM.png)
+
+###### you can remove this phrase from the nuke list once you stop being so solty about other people having fun
+
+![](https://i.imgur.com/SehKD7O.png)
+
+------------
+
 ## quiz
 ###### qoubot can also run quizes on your channel
 
