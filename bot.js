@@ -25,7 +25,7 @@ client.on('message', async (channel, user, message, self) => { //message listene
     const nuke = require('./commands/nuke');
     let nukes = nuke.get(channel);
     for(i = 0; i < nukes.length; i++) {
-        if(message.toLowerCase().includes(nukes[i]) && message.split(' ')[0] != '&nuke') {
+        if(message.toLowerCase().includes(nukes[i].toLowerCase()) && message.split(' ')[0] != '&nuke') {
             client.timeout(channel, user.username, 1, 'nuked');
         }
     }
