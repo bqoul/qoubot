@@ -165,7 +165,7 @@
 
 * ###### check remaining time before the next question
 
-![](https://i.imgur.com/W5MjdU9.png)
+![](https://i.imgur.com/c7eXgKH.png)
 
 * ###### get points for answering to the quiz, reward depends on how long it took to answer
 
