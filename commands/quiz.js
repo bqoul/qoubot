@@ -6,9 +6,8 @@ const fs = require('fs');
 let quiz_intervals = {};
 
 const get_quiz_data = (channel) => {
-    let quiz;
     try {
-        quiz = JSON.parse(fs.readFileSync(`data/quiz/${channel}.json`));
+        return JSON.parse(fs.readFileSync(`data/quiz/${channel}.json`));
     } catch {
         fs.mkdirSync('data/quiz', {recursive: true});
         fs.writeFileSync(`data/quiz/${channel}.json`, JSON.stringify({
@@ -18,10 +17,17 @@ const get_quiz_data = (channel) => {
                 answered: true,
                 time_remaining: 300,
         }, null, 1));
-        quiz = JSON.parse(fs.readFileSync(`data/quiz/${channel}.json`));
+        return JSON.parse(fs.readFileSync(`data/quiz/${channel}.json`));
+    } finally {
+        fs.writeFileSync(`data/quiz/${channel}.json`, JSON.stringify({
+                running: false,
+                delay: 300000,
+                answer: '',
+                answered: true,
+                time_remaining: 300,
+        }, null, 1));
+        return JSON.parse(fs.readFileSync(`data/quiz/${channel}.json`));
     }
-
-    return quiz;
 }
 
 const get_guiz_intervals = (channel) => {

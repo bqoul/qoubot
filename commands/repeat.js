@@ -33,19 +33,22 @@ const run = (channel, message) => {
 }
 
 function get_repeat_data(channel) {
-    let repeat_data;
     try {
-        repeat_data = JSON.parse(fs.readFileSync(`data/repeat/${channel}.json`));
+        return JSON.parse(fs.readFileSync(`data/repeat/${channel}.json`));
     } catch {
         fs.mkdirSync('data/repeat');
         fs.writeFileSync(`data/repeat/${channel}.json`, JSON.stringify({
             target: '',
             shuffle: false,
         }, null, 1));
-        repeat_data = JSON.parse(fs.readFileSync(`data/repeat/${channel}.json`));
+        return JSON.parse(fs.readFileSync(`data/repeat/${channel}.json`));
+    } finally {
+        fs.writeFileSync(`data/repeat/${channel}.json`, JSON.stringify({
+            target: '',
+            shuffle: false,
+        }, null, 1));
+        return JSON.parse(fs.readFileSync(`data/repeat/${channel}.json`));
     }
-
-    return repeat_data;
 }
 
 module.exports.set_target = set_target;

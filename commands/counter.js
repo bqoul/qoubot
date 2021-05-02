@@ -8,6 +8,9 @@ const get = (channel) => {
         fs.mkdirSync('data/counters', {recursive: true});
         fs.writeFileSync(`data/counters/${channel}.json`, JSON.stringify({}, null, 1));
         return JSON.parse(fs.readFileSync(`data/counters/${channel}.json`));
+    } finally {
+        fs.writeFileSync(`data/counters/${channel}.json`, JSON.stringify({}, null, 1));
+        return JSON.parse(fs.readFileSync(`data/counters/${channel}.json`));
     }
 }
 

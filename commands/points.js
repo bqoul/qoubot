@@ -10,6 +10,9 @@ const get = (channel, username) => {
         fs.mkdirSync('data/points', {recursive: true});
         fs.writeFileSync(`data/points/${channel}.json`, JSON.stringify({}, null, 1));
         points = JSON.parse(fs.readFileSync(`data/points/${channel}.json`));
+    } finally {
+        fs.writeFileSync(`data/points/${channel}.json`, JSON.stringify({}, null, 1));
+        points = JSON.parse(fs.readFileSync(`data/points/${channel}.json`));
     }
 
     if (!(username in points)) {
