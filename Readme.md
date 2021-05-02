@@ -151,7 +151,7 @@
 
 ![](https://i.imgur.com/xmtuktM.png)
 
-###### you can remove this phrase from the nuke list once you stop being so solty about other people having fun
+###### you can remove this phrase from the nuke list once you stop being so salty about other people having fun
 
 ![](https://i.imgur.com/SehKD7O.png)
 
