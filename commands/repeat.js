@@ -42,13 +42,7 @@ function get_repeat_data(channel) {
             shuffle: false,
         }, null, 1));
         return JSON.parse(fs.readFileSync(`data/repeat/${channel}.json`));
-    } finally {
-        fs.writeFileSync(`data/repeat/${channel}.json`, JSON.stringify({
-            target: '',
-            shuffle: false,
-        }, null, 1));
-        return JSON.parse(fs.readFileSync(`data/repeat/${channel}.json`));
-    }
+    } 
 }
 
 module.exports.set_target = set_target;

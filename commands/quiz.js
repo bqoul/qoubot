@@ -18,16 +18,7 @@ const get_quiz_data = (channel) => {
                 time_remaining: 300,
         }, null, 1));
         return JSON.parse(fs.readFileSync(`data/quiz/${channel}.json`));
-    } finally {
-        fs.writeFileSync(`data/quiz/${channel}.json`, JSON.stringify({
-                running: false,
-                delay: 300000,
-                answer: '',
-                answered: true,
-                time_remaining: 300,
-        }, null, 1));
-        return JSON.parse(fs.readFileSync(`data/quiz/${channel}.json`));
-    }
+    } 
 }
 
 const get_guiz_intervals = (channel) => {

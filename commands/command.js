@@ -8,10 +8,7 @@ const get = (channel) => {
         fs.mkdirSync('data/commands', {recursive: true});
         fs.writeFileSync(`data/commands/${channel}.json`, JSON.stringify({}, null, 1));
         return JSON.parse(fs.readFileSync(`data/commands/${channel}.json`));
-    } finally {
-        fs.writeFileSync(`data/commands/${channel}.json`, JSON.stringify({}, null, 1));
-        return JSON.parse(fs.readFileSync(`data/commands/${channel}.json`));
-    }
+    } 
 }
 
 const set = (channel, user, message) => {
