@@ -169,7 +169,7 @@
 #### &spam
 ###### spam some important (or not really important) information in your chat
 
-![](https://i.imgur.com/BufMCxH.png)
+![](https://i.imgur.com/IXZJ8O0.png)
 
 ------------
 
