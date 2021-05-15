@@ -5,7 +5,7 @@ const get = (channel) => {
     try {
         return JSON.parse(fs.readFileSync(`./data/nukes/${channel}.json`));
     } catch {
-        fs.mkdirSync('./data/nukes');
+        fs.mkdirSync('./data/nukes', {recursive: true});
         fs.writeFileSync(`./data/nukes/${channel}.json`, JSON.stringify([], null, 1));
         return JSON.parse(fs.readFileSync(`./data/nukes/${channel}.json`));
     } 
