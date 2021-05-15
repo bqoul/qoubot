@@ -102,9 +102,9 @@
 #### &exchange
 ###### quick way to get relevant currency rate
 
-![](https://i.imgur.com/w0NCMWI.png)
+![](https://i.imgur.com/y74SaXD.png)
 
-![](https://i.imgur.com/wEbpqjc.png)
+![](https://i.imgur.com/hY83yCY.png)
 
 ------------
 #### <!> commands for whitelisted users <!> 
