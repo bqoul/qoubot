@@ -61,7 +61,7 @@ client.on('message', async (channel, user, message, self) => { //message listene
 
         fs.writeFileSync(`data/quiz/${channel}.json`, JSON.stringify(quiz_data, null, 1));
     }
-})
+});
 
 client.on('message', async (channel, user, message, self) => { //command listener are separated cause i dont
     if (waiting.includes(channel) || self) { //want gtp to block message listener
@@ -182,6 +182,22 @@ client.on('message', async (channel, user, message, self) => { //command listene
             if (whitelisted(channel, user)) {
                 const nuke = require('./commands/nuke');
                 nuke.run(channel, message, user);
+            } else {
+                client.say(channel, `@${user.username} this command is only for whitelisted users`);
+            }
+            gtp(channel);
+            break;
+
+        case '&exchange':
+            const exchange = require('./commands/exchange');
+            exchange(channel, user.username, message);
+            gtp(channel);
+            break;
+
+        case '&spam':
+            const spam = require('./commands/spam');
+            if (whitelisted(channel, user)) {
+                spam(channel, message);
             } else {
                 client.say(channel, `@${user.username} this command is only for whitelisted users`);
             }

@@ -98,6 +98,15 @@
 ![](https://i.imgur.com/MxTUiOX.png)
 
 ------------
+
+#### &exchange
+###### quick way to get relevant currency rate
+
+![](https://i.imgur.com/w0NCMWI.png)
+
+![](https://i.imgur.com/wEbpqjc.png)
+
+------------
 #### <!> commands for whitelisted users <!> 
 ###### following commands can only be used by broadcaster or mods
 
@@ -154,6 +163,13 @@
 ###### you can remove this phrase from the nuke list once you stop being so salty about other people having fun
 
 ![](https://i.imgur.com/SehKD7O.png)
+
+------------
+
+#### &spam
+###### spam some important (or not really important) information in your chat
+
+![](https://i.imgur.com/BufMCxH.png)
 
 ------------
 
