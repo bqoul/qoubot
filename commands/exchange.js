@@ -1,9 +1,10 @@
+require('dotenv').config();
+
 const twitch = require('../twitch');
 const fetch = require('node-fetch');
-const keys = require('../data/keys.json');
 
 const get = async (base, target, amount) => {
-    let request = await fetch(`https://v6.exchangerate-api.com/v6/${keys.exchange}/pair/${base}/${target}/${amount}`);
+    let request = await fetch(`https://v6.exchangerate-api.com/v6/${process.env.EXCHANGE}/pair/${base}/${target}/${amount}`);
     return await request.json();
 }
 

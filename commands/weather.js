@@ -1,12 +1,12 @@
+require('dotenv').config();
+
 const twitch = require('../twitch');
 const fetch = require('node-fetch');
-const fs = require('fs');
 
 const weather = async (channel, user, message) => {
-    let key = JSON.parse(fs.readFileSync('data/keys.json'));
     let city = message.slice(9);
 
-    let link = `http://api.weatherapi.com/v1/current.json?key=${key.weather}&q=${city}`;
+    let link = `http://api.weatherapi.com/v1/current.json?key=${process.env.WEATHER}&q=${city}`;
     let responce = await fetch(link);
     let forecast = await responce.json();
 

@@ -1,8 +1,8 @@
+require('dotenv').config();
+
 const tmi = require('tmi.js');
 const TwitchApi = require("node-twitch").default;
 const fs = require('fs');
-
-const key = JSON.parse(fs.readFileSync('data/keys.json'));
 const channels = JSON.parse(fs.readFileSync('data/channels.json'));
 
 
@@ -12,12 +12,12 @@ module.exports = {
         connection: {reconnect: true},
         identity: {
             username: 'qoubot',
-            password: key.oauth,
+            password: process.env.OAUTH_TOKEN,
         },
         channels: channels,
     }),
     api: new TwitchApi({
-        client_id: 'y8edt9rbwjfeylx00rzp3g0cwtw4g2',
-        client_secret: '604w329yh1hf1qt213uig1omuyu8g3',
+        client_id: process.env.CLIENT_ID,
+        client_secret: process.env.CLIENT_SECRET,
     })
 }
