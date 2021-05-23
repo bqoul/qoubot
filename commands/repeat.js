@@ -36,7 +36,7 @@ function get_repeat_data(channel) {
     try {
         return JSON.parse(fs.readFileSync(`data/repeat/${channel}.json`));
     } catch {
-        fs.mkdirSync('data/repeat');
+        fs.mkdirSync('data/repeat', {recursive: true});
         fs.writeFileSync(`data/repeat/${channel}.json`, JSON.stringify({
             target: '',
             shuffle: false,
