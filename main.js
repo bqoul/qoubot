@@ -76,7 +76,7 @@ twitch.bot.on('message', async (channel, user, message, self) => { //command lis
             break;
 
         case '&info':
-            twitch.bot.say(channel, `@${user.username} information about the twitch.bot and all source code here => https://github.com/bqoul/qoubot`);
+            twitch.bot.say(channel, `@${user.username} information about the bot and all source code here => https://github.com/bqoul/qoubot`);
             gtp(channel);
             break;
 
