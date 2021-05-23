@@ -1,4 +1,4 @@
-const bot = require('../bot');
+const twitch = require('../twitch');
 const fs = require('fs');
 
 const set_target = (channel, user, message) => {
@@ -11,7 +11,7 @@ const set_target = (channel, user, message) => {
         repeat_data.shuffle = true;
     }
 
-    bot.say(channel, `@${user.username} got him TriHard`);
+    twitch.bot.say(channel, `@${user.username} got him TriHard`);
     fs.writeFileSync(`data/repeat/${channel}.json`, JSON.stringify(repeat_data, null, 1));
 }
 
@@ -29,7 +29,7 @@ const run = (channel, message) => {
         message = msg.join(' ');
     }
 
-    bot.say(channel, message);
+    twitch.bot.say(channel, message);
 }
 
 function get_repeat_data(channel) {

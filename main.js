@@ -1,7 +1,7 @@
-const bot = require('./bot');
+const twitch = require('./twitch');
 const fs = require('fs');
 
-bot.connect();
+twitch.bot.connect();
 
 //global timeout protection
 const sleep = async (ms) => {
@@ -16,7 +16,7 @@ const gtp = async (channel) => {
     waiting.splice(position);
 }
 
-bot.on('message', async (channel, user, message, self) => { //message listener
+twitch.bot.on('message', async (channel, user, message, self) => { //message listener
     if (self) {
         return;
     }
@@ -26,7 +26,7 @@ bot.on('message', async (channel, user, message, self) => { //message listener
     let nukes = nuke.get(channel);
     for(i = 0; i < nukes.length; i++) {
         if(message.toLowerCase().includes(nukes[i].toLowerCase()) && message.split(' ')[0] != '&nuke') {
-            bot.timeout(channel, user.username, 1, 'nuked');
+            twitch.bot.timeout(channel, user.username, 1, 'nuked');
         }
     }
 
@@ -57,13 +57,13 @@ bot.on('message', async (channel, user, message, self) => { //message listener
 
         points.get(channel, user.username); //getting points to avoid 'target property is undefined' when user has no points in points.json
         points.give(channel, pts, user.username);
-        bot.say(channel, `@${user.username} correct! the answer was [${quiz_data.answer}], you received ${pts} points`);
+        twitch.bot.say(channel, `@${user.username} correct! the answer was [${quiz_data.answer}], you received ${pts} points`);
 
         fs.writeFileSync(`data/quiz/${channel}.json`, JSON.stringify(quiz_data, null, 1));
     }
 });
 
-bot.on('message', async (channel, user, message, self) => { //command listener are separated cause i dont
+twitch.bot.on('message', async (channel, user, message, self) => { //command listener are separated cause i dont
     if (waiting.includes(channel) || self) { //want gtp to block message listener
         return;
     }
@@ -71,12 +71,12 @@ bot.on('message', async (channel, user, message, self) => { //command listener a
     const whitelisted = require('./alias/whitelist_check');
     switch(message.split(' ')[0]) {
         case '&help':
-            bot.say(channel, `@${user.username} no elp NOPERS`);
+            twitch.bot.say(channel, `@${user.username} no elp NOPERS`);
             gtp(channel);
             break;
 
         case '&info':
-            bot.say(channel, `@${user.username} information about the bot and all source code here => https://github.com/bqoul/qoubot`);
+            twitch.bot.say(channel, `@${user.username} information about the twitch.bot and all source code here => https://github.com/bqoul/qoubot`);
             gtp(channel);
             break;
 
@@ -85,7 +85,7 @@ bot.on('message', async (channel, user, message, self) => { //command listener a
                 const repeat = require('./commands/repeat');
                 repeat.set_target(channel, user, message);
             } else {
-                bot.say(channel, `@${user.username} this command is only for whitelisted users`);
+                twitch.bot.say(channel, `@${user.username} this command is only for whitelisted users`);
             }
             gtp(channel);
             break;
@@ -95,7 +95,7 @@ bot.on('message', async (channel, user, message, self) => { //command listener a
                 const stop = require('./commands/stop');
                 stop(channel, user);
             } else {
-                bot.say(channel, `@${user.username} this command is only for whitelisted users`);
+                twitch.bot.say(channel, `@${user.username} this command is only for whitelisted users`);
             }
             gtp(channel);
             break;
@@ -119,7 +119,7 @@ bot.on('message', async (channel, user, message, self) => { //command listener a
             break;
 
         case '&vanish':
-            bot.timeout(channel, user.username, 1, 'vanish');
+            twitch.bot.timeout(channel, user.username, 1, 'vanish');
             break;
 
         case '&gay':
@@ -163,7 +163,7 @@ bot.on('message', async (channel, user, message, self) => { //command listener a
                 const command = require('./commands/command');
                 command.set(channel, user, message);
             } else {
-                bot.say(channel, `@${user.username} this command is only for whitelisted users`);
+                twitch.bot.say(channel, `@${user.username} this command is only for whitelisted users`);
             }
             gtp(channel);
             break;
@@ -173,7 +173,7 @@ bot.on('message', async (channel, user, message, self) => { //command listener a
                 const counter = require('./commands/counter');
                 counter.set(channel, user, message);
             } else {
-                bot.say(channel, `@${user.username} this command is only for whitelisted users`);
+                twitch.bot.say(channel, `@${user.username} this command is only for whitelisted users`);
             }
             gtp(channel);
             break;
@@ -183,7 +183,7 @@ bot.on('message', async (channel, user, message, self) => { //command listener a
                 const nuke = require('./commands/nuke');
                 nuke.run(channel, message, user);
             } else {
-                bot.say(channel, `@${user.username} this command is only for whitelisted users`);
+                twitch.bot.say(channel, `@${user.username} this command is only for whitelisted users`);
             }
             gtp(channel);
             break;
@@ -199,7 +199,7 @@ bot.on('message', async (channel, user, message, self) => { //command listener a
             if (whitelisted(channel, user)) {
                 spam(channel, message);
             } else {
-                bot.say(channel, `@${user.username} this command is only for whitelisted users`);
+                twitch.bot.say(channel, `@${user.username} this command is only for whitelisted users`);
             }
             gtp(channel);
             break;
@@ -212,11 +212,11 @@ bot.on('message', async (channel, user, message, self) => { //command listener a
             let counters = counter.get(channel);
 
             if (message.split(' ')[0] in commands) {
-                bot.say(channel, commands[message.split(' ')[0]]);
+                twitch.bot.say(channel, commands[message.split(' ')[0]]);
                 gtp(channel);
             } else if (message.split(' ')[0] in counters) {
                 counters[message.split(' ')[0]].times += 1;
-                bot.say(channel, counters[message.split(' ')[0]].text.replace('&', counters[message.split(' ')[0]].times));
+                twitch.bot.say(channel, counters[message.split(' ')[0]].text.replace('&', counters[message.split(' ')[0]].times));
                 fs.writeFileSync(`data/counters/${channel}.json`, JSON.stringify(counters, null, 1));
                 gtp(channel);
             }

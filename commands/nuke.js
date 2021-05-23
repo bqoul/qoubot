@@ -1,4 +1,4 @@
-const bot = require('../bot');
+const twitch = require('../twitch');
 const fs = require('fs');
 
 const get = (channel) => {
@@ -19,7 +19,7 @@ const run = (channel, message, user) => {
         case 'add':
             for(i = 0; i < nukes.length; i++) {
                 if(nukes[i] == phrase) { 
-                    bot.say(channel, `@${user.username} phrase "${phrase}" already in the nuke list`);
+                    twitch.bot.say(channel, `@${user.username} phrase "${phrase}" already in the nuke list`);
                     return;
                 }
             }
@@ -27,7 +27,7 @@ const run = (channel, message, user) => {
             nukes.push(phrase);
             fs.writeFileSync(`./data/nukes/${channel}.json`, JSON.stringify(nukes, null, 1));
 
-            bot.say(channel, `@${user.username} phrase "${phrase}" was added to the nuke list`);
+            twitch.bot.say(channel, `@${user.username} phrase "${phrase}" was added to the nuke list`);
             break;
 
         case 'remove':
@@ -36,9 +36,9 @@ const run = (channel, message, user) => {
                     nukes.splice(i, 1);
 
                     fs.writeFileSync(`./data/nukes/${channel}.json`, JSON.stringify(nukes, null, 1));
-                    bot.say(channel, `@${user.username} phrase "${phrase}" was removed from the nuke list`);
+                    twitch.bot.say(channel, `@${user.username} phrase "${phrase}" was removed from the nuke list`);
                 } else {
-                    bot.say(channel, `@${user.username} theres to such phrase in the nuke list`);
+                    twitch.bot.say(channel, `@${user.username} theres to such phrase in the nuke list`);
                 }
             }
 

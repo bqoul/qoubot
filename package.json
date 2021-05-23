@@ -11,6 +11,7 @@
   "dependencies": {
     "mathjs": "^9.3.2",
     "node-fetch": "^2.6.1",
+    "node-twitch": "^0.4.3",
     "tmi.js": "^1.5.0"
   }
 }

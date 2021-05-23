@@ -1,4 +1,4 @@
-const bot = require('../bot');
+const twitch = require('../twitch');
 const fetch = require('node-fetch');
 const keys = require('../data/keys.json');
 
@@ -22,5 +22,5 @@ module.exports = async (channel, username, message) => {
         data = await get(base, target, amount);
     }
 
-    bot.say(channel, `@${username} ${amount} ${base} is ${data.conversion_result.toFixed(2)} ${target}`);
+    twitch.bot.say(channel, `@${username} ${amount} ${base} is ${data.conversion_result.toFixed(2)} ${target}`);
 }

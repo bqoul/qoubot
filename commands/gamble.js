@@ -1,4 +1,4 @@
-const bot = require('../bot');
+const twitch = require('../twitch');
 const points = require('./points');
 
 let slots = ['Jebaited', 'TriHard', 'PogChamp', 'BibleThump', 'WutFace'];
@@ -33,18 +33,18 @@ const gamble = (channel, user, message) => {
     if (message.split(' ')[1] === 'all') {
         amount = user_points;
     } else if (Number.isNaN(parseInt(message.split(' ')[1]))){
-        bot.say(channel, `@${user.username} how do you think im supposed to roll this "${message.slice(8)}" points?!`);
+        twitch.bot.say(channel, `@${user.username} how do you think im supposed to roll this "${message.slice(8)}" points?!`);
         return;
     } else {
         amount = parseInt(message.split(' ')[1]);
     }
 
     if (user_points < 100) {
-        bot.say(channel, `@${user.username} you need at least 100 points to gamble, you have ${user_points}`);
+        twitch.bot.say(channel, `@${user.username} you need at least 100 points to gamble, you have ${user_points}`);
     } else if (amount < 0) {
-        bot.say(channel, `@${user.username} how do you think im supposed to roll this "${message.slice(8)}" points?!`);
+        twitch.bot.say(channel, `@${user.username} how do you think im supposed to roll this "${message.slice(8)}" points?!`);
     } else if ((user_points - amount) < 0) {
-        bot.say(channel, `@${user.username} you dont have enough points`);
+        twitch.bot.say(channel, `@${user.username} you dont have enough points`);
     } else {
         let slot_1 = Math.floor(Math.random() * (4 - 0 + 1)) + 0;
         let slot_2 = Math.floor(Math.random() * (4 - 0 + 1)) + 0;
@@ -52,12 +52,12 @@ const gamble = (channel, user, message) => {
 
         if (slot_1 == slot_2 && slot_2 == slot_3 && slot_3 == slot_1) {
             let reward_message = reward(channel, user, amount, slot_1);
-            bot.say(channel, `[ ${slots[slot_1]} | ${slots[slot_2]} | ${slots[slot_3]} ] ${reward_message}`);
+            twitch.bot.say(channel, `[ ${slots[slot_1]} | ${slots[slot_2]} | ${slots[slot_3]} ] ${reward_message}`);
         } else if (slot_1 != slot_2 && slot_2 != slot_3 && slot_3 != slot_1){
-            bot.say(channel, `[ ${slots[slot_1]} | ${slots[slot_2]} | ${slots[slot_3]} ]  ${user.username} lost ${amount} points`);
+            twitch.bot.say(channel, `[ ${slots[slot_1]} | ${slots[slot_2]} | ${slots[slot_3]} ]  ${user.username} lost ${amount} points`);
             points.give(channel, -amount, user.username);
         } else {
-            bot.say(channel, `[ ${slots[slot_1]} | ${slots[slot_2]} | ${slots[slot_3]} ]  ${user.username} won his ${amount} back`);
+            twitch.bot.say(channel, `[ ${slots[slot_1]} | ${slots[slot_2]} | ${slots[slot_3]} ]  ${user.username} won his ${amount} back`);
         }
     }
 

@@ -1,4 +1,4 @@
-const bot = require('../bot');
+const twitch = require('../twitch');
 const fs = require('fs');
 
 const get = (channel) => {
@@ -28,9 +28,9 @@ const set = (channel, user, message) => {
                 });
 
                 fs.writeFileSync(`data/counters/${channel}.json`, JSON.stringify(counters, null, 1));
-                bot.say(channel, `@${user.username} counter ${message.split(' ')[2]} was added successfully`);
+                twitch.bot.say(channel, `@${user.username} counter ${message.split(' ')[2]} was added successfully`);
             } else {
-                bot.say(channel, `@${user.username} such counter already exists`);
+                twitch.bot.say(channel, `@${user.username} such counter already exists`);
             }
 
             break;
@@ -39,9 +39,9 @@ const set = (channel, user, message) => {
             if (message.split(' ')[2] in counters) {
                 delete counters[message.split(' ')[2]];
                 fs.writeFileSync(`data/counters/${channel}.json`, JSON.stringify(counters, null, 1));
-                bot.say(channel, `@${user.username} counter ${message.split(' ')[2]} was removed successfully`);
+                twitch.bot.say(channel, `@${user.username} counter ${message.split(' ')[2]} was removed successfully`);
             } else {
-                bot.say(channel, `@${user.username} such counter does not exists`);
+                twitch.bot.say(channel, `@${user.username} such counter does not exists`);
             }
 
             break;

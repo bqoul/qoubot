@@ -1,4 +1,4 @@
-const bot = require('../bot');
+const twitch = require('../twitch');
 
 const shuffle = (channel, message) => {
     message = message.slice(9);
@@ -10,7 +10,7 @@ const shuffle = (channel, message) => {
     }
     message = msg.join(' ');
 
-    bot.say(channel, message);
+    twitch.bot.say(channel, message);
 }
 
 module.exports = shuffle;

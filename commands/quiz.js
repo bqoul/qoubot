@@ -1,4 +1,4 @@
-const bot = require('../bot');
+const twitch = require('../twitch');
 const whitelisted = require('../alias/whitelist_check');
 const fetch = require('node-fetch');
 const fs = require('fs');
@@ -50,7 +50,7 @@ const run = (channel, user, message) => {
         quiz.answered = false;
         quiz.answer = answer_cleaner(quiz_responce[0].answer);
 
-        bot.say(channel, `/me question from [${quiz_category}] category: ${quiz_question}`)
+        twitch.bot.say(channel, `/me question from [${quiz_category}] category: ${quiz_question}`)
 
         clearInterval(quiz_intervals.timer_interval);
         quiz.time_remaining = quiz.delay / 1000;
@@ -70,7 +70,7 @@ const run = (channel, user, message) => {
         quiz.time_remaining -= 1;
 
         if (quiz.delay / 1000 - quiz.time_remaining === 30 && !quiz.answered) { //send the answer in chat if no one gave the correct answer for 30 seconds
-            bot.say(channel, `/me no one gave the correct answer, it was [${quiz.answer}]`);
+            twitch.bot.say(channel, `/me no one gave the correct answer, it was [${quiz.answer}]`);
             quiz.answered = true;
         }
 
@@ -81,7 +81,7 @@ const run = (channel, user, message) => {
         case 'start':
             if (whitelisted(channel, user)) {
                 if (quiz.running) {
-                    bot.say(channel, `@${user.username} quiz already running`);
+                    twitch.bot.say(channel, `@${user.username} quiz already running`);
                 } else {
                     quiz.running = true;
 
@@ -92,46 +92,46 @@ const run = (channel, user, message) => {
                     fs.writeFileSync(`data/quiz/${channel}.json`, JSON.stringify(quiz, null, 1));
                 }
             } else {
-                bot.say(channel, `@${user.username} this command is only for whitelisted users`);
+                twitch.bot.say(channel, `@${user.username} this command is only for whitelisted users`);
             }
             break;
 
         case 'stop':
             if (whitelisted(channel, user)) {
                 if (!quiz.running) {
-                    bot.say(channel, `@${user.username} quiz is not running currently`);
+                    twitch.bot.say(channel, `@${user.username} quiz is not running currently`);
                 } else {
                     quiz.running = false;
 
                     quiz_intervals = get_guiz_intervals(channel);
                     clearInterval(quiz_intervals.interval);
                     clearInterval(quiz_intervals.timer_interval);
-                    bot.say(channel, `@${user.username} quiz has been stopped`);
+                    twitch.bot.say(channel, `@${user.username} quiz has been stopped`);
 
                     fs.writeFileSync(`data/quiz/${channel}.json`, JSON.stringify(quiz, null, 1));
                 }
             } else {
-                bot.say(channel, `@${user.username} this command is only for whitelisted users`);
+                twitch.bot.say(channel, `@${user.username} this command is only for whitelisted users`);
             }
             break;
 
         case 'delay':
             if (whitelisted(channel, user)) {
                 if (message.split(' ')[2] < 60) {
-                    bot.say(channel, `@${user.username} delay cant be less than 60 seconds`);
+                    twitch.bot.say(channel, `@${user.username} delay cant be less than 60 seconds`);
                 } else if (Number.isNaN(message.split(' ')[2] * 1000)) { //checking if user sent actual number, not 'lsakdjf\*#$@()'
-                    bot.say(channel, `@${user.username} this is not a number`);
+                    twitch.bot.say(channel, `@${user.username} this is not a number`);
                 } else if (quiz.running) {
-                    bot.say(channel, `@${user.username} cant change delay while quiz is running`);
+                    twitch.bot.say(channel, `@${user.username} cant change delay while quiz is running`);
                 } else {
                     quiz.delay = message.split(' ')[2] * 1000;
                     quiz.time_remaining = quiz.delay / 1000;
-                    bot.say(channel, `@${user.username} delay has been set to ${message.split(' ')[2]} seconds`);
+                    twitch.bot.say(channel, `@${user.username} delay has been set to ${message.split(' ')[2]} seconds`);
 
                     fs.writeFileSync(`data/quiz/${channel}.json`, JSON.stringify(quiz, null, 1));
                 }
             } else {
-                bot.say(channel, `@${user.username} this command is only for whitelisted users`);
+                twitch.bot.say(channel, `@${user.username} this command is only for whitelisted users`);
             }
             break;
 
@@ -147,7 +147,7 @@ const run = (channel, user, message) => {
                     quiz_run();
                 }
             } else {
-                bot.say(channel, `@${user.username} this command is only for whitelisted users`);
+                twitch.bot.say(channel, `@${user.username} this command is only for whitelisted users`);
             }
             break;
 
@@ -157,12 +157,12 @@ const run = (channel, user, message) => {
                 let sec = quiz.time_remaining % 60;
 
                 if (min != 0) {
-                    bot.say(channel, `@${user.username} next question will arrive in ${min} min ${sec} sec`);
+                    twitch.bot.say(channel, `@${user.username} next question will arrive in ${min} min ${sec} sec`);
                 } else {
-                    bot.say(channel, `@${user.username} next question will arrive in ${sec} sec`);
+                    twitch.bot.say(channel, `@${user.username} next question will arrive in ${sec} sec`);
                 }
             } else {
-                bot.say(channel, `@${user.username} quiz is not running currently`);
+                twitch.bot.say(channel, `@${user.username} quiz is not running currently`);
             }
             break;
     }
