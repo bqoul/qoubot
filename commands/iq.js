@@ -1,13 +1,13 @@
-const client = require('../client');
+const bot = require('../bot');
 
 const iq = (channel, user, message) => {
     let iq = ~~(Math.random() * (150 - -1 + 1)) + -1;
     let target = message.split(' ')[1];
 
     if (target === undefined) {
-        client.say(channel, `@${user.username} you have ${iq}iq`);
+        bot.say(channel, `@${user.username} you have ${iq}iq`);
     } else {
-        client.say(channel, `${target} has ${iq} iq`);
+        bot.say(channel, `${target} has ${iq} iq`);
     }
 }
 

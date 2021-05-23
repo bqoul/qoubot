@@ -1,4 +1,4 @@
-const client = require('../client');
+const bot = require('../bot');
 const fs = require('fs');
 
 const get = (channel) => {
@@ -24,9 +24,9 @@ const set = (channel, user, message) => {
                 });
 
                 fs.writeFileSync(`data/commands/${channel}.json`, JSON.stringify(commands, null, 1));
-                client.say(channel, `@${user.username} command ${message.split(' ')[2]} was added successfully`);
+                bot.say(channel, `@${user.username} command ${message.split(' ')[2]} was added successfully`);
             } else {
-                client.say(channel, `@${user.username} such command already exists`);
+                bot.say(channel, `@${user.username} such command already exists`);
             }
 
             break;
@@ -35,9 +35,9 @@ const set = (channel, user, message) => {
             if (message.split(' ')[2] in commands) {
                 delete commands[message.split(' ')[2]];
                 fs.writeFileSync(`data/commands/${channel}.json`, JSON.stringify(commands, null, 1));
-                client.say(channel, `@${user.username} command ${message.split(' ')[2]} was removed successfully`);
+                bot.say(channel, `@${user.username} command ${message.split(' ')[2]} was removed successfully`);
             } else {
-                client.say(channel, `@${user.username} such command does not exists`);
+                bot.say(channel, `@${user.username} such command does not exists`);
             }
 
             break;

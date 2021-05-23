@@ -1,4 +1,4 @@
-const client = require('../client');
+const bot = require('../bot');
 const fetch = require('node-fetch');
 const fs = require('fs');
 
@@ -11,14 +11,14 @@ const weather = async (channel, user, message) => {
     let forecast = await responce.json();
 
     if (forecast.location === undefined) {
-        client.say(channel, `@${user.username} ${forecast.error.message.toLowerCase()}`);
+        bot.say(channel, `@${user.username} ${forecast.error.message.toLowerCase()}`);
     } else {
         let city = forecast.location.name;
         let country = forecast.location.country;
         let weather = forecast.current.condition.text;
         let temp_c = forecast.current.temp_c;
         let temp_f = forecast.current.temp_f;
-        client.say(channel, `@${user.username} weather in ${city} (${country}): ${weather} | temperature ${temp_c}°C (${temp_f}°F).`)
+        bot.say(channel, `@${user.username} weather in ${city} (${country}): ${weather} | temperature ${temp_c}°C (${temp_f}°F).`)
     }
 }
 

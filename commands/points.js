@@ -1,4 +1,4 @@
-const client = require('../client');
+const bot = require('../bot');
 const fs = require('fs');
 
 const get = (channel, username) => {
@@ -47,27 +47,27 @@ const command = (channel, user, message) => {
                 fs.writeFileSync(`data/points/${channel}.json`, JSON.stringify(points, null, 1));
 
                 give(channel, user_points, message.split(' ')[2]);
-                client.say(channel, `@${user.username} transfer was successful, now you have ${points[user.username]} points`);
+                bot.say(channel, `@${user.username} transfer was successful, now you have ${points[user.username]} points`);
             } else if (user_points - amount >= 0) {
                 let points = JSON.parse(fs.readFileSync(`data/points/${channel}.json`));
                 points[user.username] = user_points - amount;
                 fs.writeFileSync(`data/points/${channel}.json`, JSON.stringify(points, null, 1));
 
                 give(channel, amount, message.split(' ')[2]);
-                client.say(channel, `@${user.username} transfer was successful, now you have ${points[user.username]} points`);
+                bot.say(channel, `@${user.username} transfer was successful, now you have ${points[user.username]} points`);
             } else {
-                client.say(channel, `@${user.username} you have only ${user_points} points`);
+                bot.say(channel, `@${user.username} you have only ${user_points} points`);
             }
             break;
 
         case undefined:
             points = get(channel, user.username);
-            client.say(channel, `@${user.username} you have ${points} points`);
+            bot.say(channel, `@${user.username} you have ${points} points`);
             break;
 
         default:
             points = get(channel, message.split(' ')[1]);
-            client.say(channel, `@${user.username} ${message.split(' ')[1]} has ${points} points`);
+            bot.say(channel, `@${user.username} ${message.split(' ')[1]} has ${points} points`);
             break;
     }
 }

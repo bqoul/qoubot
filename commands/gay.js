@@ -1,4 +1,4 @@
-const client = require('../client');
+const bot = require('../bot');
 
 const gay = (channel, user, message) => {
     let persent = ~~(Math.random() * (100 - 0 + 1)) + 0;
@@ -6,15 +6,15 @@ const gay = (channel, user, message) => {
 
     if (target === undefined) {
         if (persent < 50) {
-            client.say(channel, `@${user.username} you are ${persent}% gay Kappa`);
+            bot.say(channel, `@${user.username} you are ${persent}% gay Kappa`);
         } else if (persent > 50) {
-            client.say(channel, `@${user.username} you are ${persent}% gay KappaPride`);
+            bot.say(channel, `@${user.username} you are ${persent}% gay KappaPride`);
         }
     } else {
         if (persent < 50) {
-            client.say(channel, `${target} are ${persent}% gay Kappa`);
+            bot.say(channel, `${target} are ${persent}% gay Kappa`);
         } else if (persent > 50) {
-            client.say(channel, `${target} are ${persent}% gay KappaPride`);
+            bot.say(channel, `${target} are ${persent}% gay KappaPride`);
         }
     }
 }

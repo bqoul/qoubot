@@ -1,4 +1,4 @@
-const client = require('../client');
+const bot = require('../bot');
 
 const shuffle = (channel, message) => {
     message = message.slice(9);
@@ -10,7 +10,7 @@ const shuffle = (channel, message) => {
     }
     message = msg.join(' ');
 
-    client.say(channel, message);
+    bot.say(channel, message);
 }
 
 module.exports = shuffle;

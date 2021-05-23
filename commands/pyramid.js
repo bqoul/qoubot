@@ -1,11 +1,11 @@
-const client = require('../client');
+const bot = require('../bot');
 
 const pyramid = (channel, message) => {
     let times = message.split(' ')[2];
     let emote = message.split(' ')[1] + ' ';
 
     if (message.split(' ')[1] === undefined) {
-        client.say(channel, `@${usr.username} please choose an emote`)
+        bot.say(channel, `@${usr.username} please choose an emote`)
     } else {
         if (times < 3 || times === undefined) {
             times = 3;
@@ -14,10 +14,10 @@ const pyramid = (channel, message) => {
         }
 
         for (let i = 1; i < times; i++) {
-            client.say(channel, emote.repeat(i));
+            bot.say(channel, emote.repeat(i));
         }
         for (times - 1; times > 0; times--) {
-            client.say(channel, emote.repeat(times));
+            bot.say(channel, emote.repeat(times));
         }
     }
 }
