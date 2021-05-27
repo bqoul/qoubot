@@ -156,7 +156,7 @@
 ------------
 
 #### &nuke
-###### tired of chat spamming "[![](https://cdn.frankerfacez.com/emote/475743/1)](https://cdn.frankerfacez.com/emote/475743/1) COCK"? just add this phrase to the nuke list and ban everyone (only for 1 second in not a monster)
+###### tired of chat spamming "[![](https://cdn.frankerfacez.com/emote/475743/1)](https://cdn.frankerfacez.com/emote/475743/1) COCK"? just add this phrase to the nuke list and ban everyone (only for 1 minute im not a monster)
 
 ![](https://i.imgur.com/xmtuktM.png)
 

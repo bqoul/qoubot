@@ -26,7 +26,7 @@ twitch.bot.on('message', async (channel, user, message, self) => { //message lis
     let nukes = nuke.get(channel);
     for(i = 0; i < nukes.length; i++) {
         if(message.toLowerCase().includes(nukes[i].toLowerCase()) && message.split(' ')[0] != '&nuke') {
-            twitch.bot.timeout(channel, user.username, 1, 'nuked');
+            twitch.bot.timeout(channel, user.username, 60, 'nuked');
         }
     }
 
