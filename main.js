@@ -69,7 +69,7 @@ twitch.bot.on('message', async (channel, user, message, self) => { //command lis
     }
 
     const whitelisted = require('./alias/whitelist_check');
-    switch(message.split(' ')[0]) {
+    switch(message.split(' ')[0].toLowerCase()) {
         case '&help':
             twitch.bot.say(channel, `@${user.username} no elp NOPERS`);
             gtp(channel);
@@ -211,12 +211,12 @@ twitch.bot.on('message', async (channel, user, message, self) => { //command lis
             let commands = command.get(channel);
             let counters = counter.get(channel);
 
-            if (message.split(' ')[0] in commands) {
-                twitch.bot.say(channel, commands[message.split(' ')[0]]);
+            if (message.split(' ')[0].toLowerCase() in commands) {
+                twitch.bot.say(channel, commands[message.split(' ')[0].toLowerCase()]);
                 gtp(channel);
-            } else if (message.split(' ')[0] in counters) {
-                counters[message.split(' ')[0]].times += 1;
-                twitch.bot.say(channel, counters[message.split(' ')[0]].text.replace('&', counters[message.split(' ')[0]].times));
+            } else if (message.split(' ')[0].toLowerCase() in counters) {
+                counters[message.split(' ')[0].toLowerCase()].times += 1;
+                twitch.bot.say(channel, counters[message.split(' ')[0].toLowerCase()].text.replace('&', counters[message.split(' ')[0].toLowerCase()].times));
                 fs.writeFileSync(`data/counters/${channel}.json`, JSON.stringify(counters, null, 1));
                 gtp(channel);
             }
