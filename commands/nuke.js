@@ -31,20 +31,17 @@ const run = (channel, message, user) => {
             break;
 
         case 'remove':
-            let removed = false;
             for(i = 0; i < nukes.length; i++) {
-                if(nukes[i] == phrase && !removed) {
+                if(nukes[i] == phrase) {
                     nukes.splice(i, 1);
 
                     fs.writeFileSync(`./data/nukes/${channel}.json`, JSON.stringify(nukes, null, 1));
                     twitch.bot.say(channel, `@${user.username} phrase "${phrase}" was removed from the nuke list`);
-                    removed = true;
+                    return;
                 }
             }
-            if (!removed) {
-                twitch.bot.say(channel, `@${user.username} theres to such phrase in the nuke list`);
-            }
 
+            twitch.bot.say(channel, `@${user.username} theres to such phrase in the nuke list`);
             break;
     }
 }
