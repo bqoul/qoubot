@@ -37,6 +37,28 @@ const get_guiz_intervals = (channel) => {
     return quiz_intervals;
 }
 
+const answer_cleaner = (msg) => { //removing all trash from answer
+    let articles = ['the', 'The', 'a', 'A', 'an', 'An', 'to'];
+    let tags = ['</i>', '<i>', '</I>', '"', '(', ')', "'", '\\'];
+
+    for (let i = 0; i < articles.length; i++) {
+        if (msg.split(' ')[0] == articles[i]) {
+            msg = msg.replace(articles[i], '').slice(1);
+        }
+    }
+
+    const tags_cleaner = (msg, tag) => {
+        if(!msg.includes(tag)) return msg;
+        return tags_cleaner(msg.replace(tag, ""));
+    }
+
+    for (let i = 0; i < tags.length; i++) {
+        msg = tags_cleaner(msg, tags[i]);
+    }
+
+    return msg;
+}
+
 const run = (channel, user, message) => {
     let quiz = get_quiz_data(channel);
 
@@ -166,25 +188,6 @@ const run = (channel, user, message) => {
             }
             break;
     }
-}
-
-function answer_cleaner(msg) { //removing all trash from answer
-    let articles = ['the', 'The', 'a', 'A', 'an', 'An', 'to'];
-    let tags = ['</i>', '<i>', '</I>', '"', '(', ')', "'"];
-
-    for (let i = 0; i < articles.length; i++) {
-        if (msg.split(' ')[0] == articles[i]) {
-            msg = msg.replace(articles[i], '').slice(1);
-        }
-    }
-
-    for (let i = 0; i < tags.length; i++) {
-        for (let j = 0; j < 20; j++) { //dont blame me, .replaceAll() only avalible in node v15+, which is not lts
-            msg = msg.replace(tags[i], ''); // and i cant install it in my termux
-        }
-    }
-
-    return msg;
 }
 
 module.exports.run = run;
