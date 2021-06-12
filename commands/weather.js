@@ -3,7 +3,7 @@ require('dotenv').config();
 const twitch = require('../twitch');
 const fetch = require('node-fetch');
 
-const weather = async (channel, user, message) => {
+module.exports = async (channel, user, message) => {
     let city = message.slice(9);
 
     let link = `http://api.weatherapi.com/v1/current.json?key=${process.env.WEATHER}&q=${city}`;
@@ -21,5 +21,3 @@ const weather = async (channel, user, message) => {
         twitch.bot.say(channel, `@${user.username} weather in ${city} (${country}): ${weather} | temperature ${temp_c}°C (${temp_f}°F).`)
     }
 }
-
-module.exports = weather;

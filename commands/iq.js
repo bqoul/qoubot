@@ -1,6 +1,6 @@
 const twitch = require('../twitch');
 
-const iq = (channel, user, message) => {
+module.exports = (channel, user, message) => {
     let iq = ~~(Math.random() * (150 - -1 + 1)) + -1;
     let target = message.split(' ')[1];
 

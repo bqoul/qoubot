@@ -1,6 +1,6 @@
 const twitch = require('../twitch');
 
-const shuffle = (channel, message) => {
+module.exports = (channel, message) => {
     message = message.slice(9);
     let msg = message.split(' ');
 
@@ -12,5 +12,3 @@ const shuffle = (channel, message) => {
 
     twitch.bot.say(channel, message);
 }
-
-module.exports = shuffle;

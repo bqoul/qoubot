@@ -26,7 +26,7 @@ const reward = (channel, user, amount, slot) => {
     }
 }
 
-const gamble = (channel, user, message) => {
+module.exports = (channel, user, message) => {
     let user_points = points.get(channel, user.username);
     let amount;
 
@@ -62,5 +62,3 @@ const gamble = (channel, user, message) => {
     }
 
 }
-
-module.exports = gamble;

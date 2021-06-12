@@ -1,6 +1,6 @@
 const twitch = require('../twitch');
 
-const pyramid = (channel, message) => {
+module.exports = (channel, message) => {
     let times = message.split(' ')[2];
     let emote = message.split(' ')[1] + ' ';
 
@@ -21,5 +21,3 @@ const pyramid = (channel, message) => {
         }
     }
 }
-
-module.exports = pyramid;
