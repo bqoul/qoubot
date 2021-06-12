@@ -10,5 +10,3 @@ module.exports = (channel, user, message) => {
         twitch.bot.say(channel, `${target} has ${iq} iq`);
     }
 }
-
-module.exports = iq;
