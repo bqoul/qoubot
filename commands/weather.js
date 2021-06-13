@@ -1,23 +1,25 @@
-require('dotenv').config();
+const fetch = require("node-fetch");
 
-const twitch = require('../twitch');
-const fetch = require('node-fetch');
+module.exports = {
+	tags: ["weather", "forecast"],
+	run: async (param) => {
+		let city = param.message.slice(`${param.message.split(/[ ]+/)[0]} `.length); //removing "&weather " from the city name
 
-module.exports = async (channel, user, message) => {
-    let city = message.slice(9);
+		const link = `http://api.weatherapi.com/v1/current.json?key=${process.env.WEATHER}&q=${city}`;
+		const responce = await fetch(link);
+		const forecast = await responce.json();
 
-    let link = `http://api.weatherapi.com/v1/current.json?key=${process.env.WEATHER}&q=${city}`;
-    let responce = await fetch(link);
-    let forecast = await responce.json();
+		//if bot couldnt find the location
+		if (!forecast.location) {
+			param.bot.say(param.channel, `@${param.user.username} MrDestructoid ${forecast.error.message.toLowerCase()}`);
+			return;
+		}
 
-    if (forecast.location === undefined) {
-        twitch.bot.say(channel, `@${user.username} ${forecast.error.message.toLowerCase()}`);
-    } else {
-        let city = forecast.location.name;
-        let country = forecast.location.country;
-        let weather = forecast.current.condition.text;
-        let temp_c = forecast.current.temp_c;
-        let temp_f = forecast.current.temp_f;
-        twitch.bot.say(channel, `@${user.username} weather in ${city} (${country}): ${weather} | temperature ${temp_c}°C (${temp_f}°F).`)
-    }
+		city = forecast.location.name;
+		const country = forecast.location.country;
+		const weather = forecast.current.condition.text;
+		const temp_c = forecast.current.temp_c;
+		const temp_f = forecast.current.temp_f;
+		param.bot.say(param.channel, `@${param.user.username} weather in ${city} (${country}): ${weather} | temperature ${temp_c}°C (${temp_f}°F).`)
+	}
 }

@@ -1,23 +1,26 @@
-const twitch = require('../twitch');
+module.exports = {
+	tags: ["pyramid"],
+	run: async (param) => {
+		//expected message => "&pyramid EMOTE AMOUNT_OF_TIMES"
+		const emote = param.message.split(/[ ]+/)[1];
+		let times = param.message.split(/[ ]+/)[2] ?? 3;
 
-module.exports = (channel, message) => {
-    let times = message.split(' ')[2];
-    let emote = message.split(' ')[1] + ' ';
+		if(!emote) {
+			param.bot.say(param.channel, `${param.user.username}, MrDestructoid invalid syntax, expected <&pyramid EMOTE> or <&pyramid EMOTE AMOUNT_OF_TIMES>`);
+			return;
+		}
+		//little control to the amount of times
+		if(times < 3) {
+			times = 3;
+		} else if (times > 5) {
+			times = 5;
+		}
 
-    if (message.split(' ')[1] === undefined) {
-        twitch.bot.say(channel, `@${usr.username} please choose an emote`)
-    } else {
-        if (times < 3 || times === undefined) {
-            times = 3;
-        } else if (times > 7) {
-            times = 7;
-        }
-
-        for (let i = 1; i < times; i++) {
-            twitch.bot.say(channel, emote.repeat(i));
-        }
-        for (times - 1; times > 0; times--) {
-            twitch.bot.say(channel, emote.repeat(times));
-        }
-    }
+		for(i = 1; i < times; i++) {
+			param.bot.say(param.channel, `${emote} `.repeat(i));
+		}
+		for(times - 1; times > 0; times--) {
+			param.bot.say(param.channel, `${emote} `.repeat(times));
+		}
+	}
 }

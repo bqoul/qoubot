@@ -1,12 +1,14 @@
-const twitch = require('../twitch');
-
-module.exports = (channel, user, message) => {
-    let iq = ~~(Math.random() * (150 - -1 + 1)) + -1;
-    let target = message.split(' ')[1];
-
-    if (target === undefined) {
-        twitch.bot.say(channel, `@${user.username} you have ${iq}iq`);
-    } else {
-        twitch.bot.say(channel, `${target} has ${iq} iq`);
-    }
+module.exports = {
+	tags: ["iq"],
+	run: async (param) => {
+		//random number between 0 and 200
+		const iq = ~~(Math.random() * (200 - -1 + 1)) + -1;
+		const target = param.message.split(/[ ]+/)[1];
+		
+		let msg = `${target} has ${iq}iq`;
+		if(!target) { //check if user entered "&iq" instead of "&iq someone"
+			msg = `${param.user.username}, you have ${iq}iq`;
+		}
+		param.bot.say(param.channel, msg);
+	}
 }

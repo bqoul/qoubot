@@ -1,13 +1,14 @@
-const twitch = require('../twitch');
+const aliases = require("../aliases");
 
-const sleep = async (ms) => {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
+module.exports = {
+	tags: ["spam"],
+	roles: ["streamer", "mod", "vip"],
+	run: async (param) => {
+		param.message = param.message.slice(`${param.message.split(/[ ]+/)[0]} `.length); //removing "&spam " from the message
 
-module.exports = (channel, message) => {
-    message = message.slice(message.split(' ')[0].length);
-    for(i = 0; i < 5; i++) {
-        twitch.bot.say(channel, message);
-        sleep(500);
-    }
+		for(i = 0; i < 5; i++) {
+			param.bot.say(param.channel, param.message);
+			aliases.sleep(500);
+		}
+	}
 }

@@ -1,11 +1,14 @@
-const twitch = require("../twitch");
-const math = require('mathjs');
+const math = require("mathjs");
 
-module.exports = (channel, user, message) => {
-    try {
-        let result = math.evaluate(message.slice(7));
-        twitch.bot.say(channel, `@${user.username} ${message.slice(7)} = ${result}`);
-    } catch {
-        twitch.bot.say(channel, `@${user.username} i cant count this`);
-    }
+module.exports = {
+	tags: ["count", "calculate"],
+	run: async (param) => {
+		try {
+			const equasion = param.message.slice(`${param.message.split(/[ ]+/)[0]} `.length);
+			const result = math.evaluate(equasion);
+			param.bot.say(param.channel, `${param.user.username}, MrDestructoid ${equasion} = ${result}`);
+		} catch {
+			param.bot.say(param.channel, `${param.user.username}, MrDestructoid unnable to calculate.`);
+		}
+	},
 }
