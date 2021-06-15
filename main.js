@@ -1,12 +1,15 @@
+require("dotenv").config();
+const express = require("express");
 const aliases = require("./aliases");
-const Bot = require("./bot");
 
 aliases.data.connect();
+const app = express();
+const PORT = process.env.PORT ?? 3000;
 
-let bot = {};
+app.listen(PORT, () => {
+	console.log(`listening to port ${PORT}...`);
+});
 
-bot["5gxd"] = new Bot("5gxd");
-bot["qoubot"] = new Bot("qoubot");
-
-bot["qoubot"].connect();
-bot["5gxd"].connect();
+app.get("/", (req, res) => {
+	res.send("hello world!");
+});
