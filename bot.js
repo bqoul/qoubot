@@ -21,10 +21,10 @@ module.exports = class Bot {
 			//iterating througth all files in the ./commands
 			for(const file of fs.readdirSync("./commands")) {
 				const command = require(`./commands/${file}`);
-				for(const alias of command.tags) {
-					//check if command and roles matched
-					if(`${index}${alias}`.toLowerCase() === message.split(" ")[0].toLowerCase() && (!command.roles || command.roles.includes(aliases.role(user)))) {
-						// command.run(this[this.channel], channel, user, message);
+				for(const tag of command.tags) {
+					//check if tag and roles matched
+					if(`${index}${tag}`.toLowerCase() == message.split(" ")[0].toLowerCase() && (!command.roles || command.roles.includes(aliases.role(user)))) {
+						// tag.run(this[this.channel], channel, user, message);
 						command.run({
 							bot: this[this.channel],
 							channel: channel,
