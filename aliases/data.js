@@ -22,5 +22,9 @@ module.exports = {
 		}
 		//if not, creating new document
 		await new data(options).save();
-	}
+	},
+	async delete(type, channel) {
+		const data = require(`./data/${type}`);
+		await data.deleteOne({channel: channel});
+	},
 }
