@@ -1,5 +1,5 @@
 module.exports = {
-	tags: ["info", "help"],
+	tags: ["info"],
 	run: (params) => {
 		params.bot.say(params.channel, `${params.user.username}, information about the bot and all source code here => github.com/bqoul/qoubot`);
 	}

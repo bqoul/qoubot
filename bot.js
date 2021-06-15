@@ -1,7 +1,6 @@
 const fs = require("fs");
 const twitch = require("./twitch");
 const aliases = require("./aliases");
-const {index} = require("./data/index.json");
 
 module.exports = class Bot {
 	constructor(channel) {
@@ -14,28 +13,19 @@ module.exports = class Bot {
 	waiting = [];
 	connect() {
 		this[this.channel].connect();
-
-		//message handler
-		this[this.channel].on("message", async (channel, user, message, self) => {
-			if(self) return;
-		});
-
-		/*
-			SEPARATED SO GTP WONT BLOCK MESSAGE HANGLER
-		*/
-
-		//command handler
 		this[this.channel].on("message", async (channel, user, message, self) => {
 			if(self || this.waiting.includes(channel)) return;
 
+			//looking for custom index in database, if theres no custom index - setting it to default value
+			const {index} = await aliases.data.get("index", channel) ?? {index: "&"};
 			//iterating througth all files in the ./commands
 			for(const file of fs.readdirSync("./commands")) {
-				const cmd = require(`./commands/${file}`);
-				for(const alias of cmd.tags) {
+				const command = require(`./commands/${file}`);
+				for(const alias of command.tags) {
 					//check if command and roles matched
-					if(`${index}${alias}`.toLowerCase() === message.split(" ")[0].toLowerCase() && (!cmd.roles || cmd.roles.includes(aliases.role(user)))) {
-						// cmd.run(this[this.channel], channel, user, message);
-						cmd.run({
+					if(`${index}${alias}`.toLowerCase() === message.split(" ")[0].toLowerCase() && (!command.roles || command.roles.includes(aliases.role(user)))) {
+						// command.run(this[this.channel], channel, user, message);
+						command.run({
 							bot: this[this.channel],
 							channel: channel,
 							user: user,

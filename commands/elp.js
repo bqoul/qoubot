@@ -1,6 +1,6 @@
 module.exports = {
-	tags: ["elp"],
+	tags: ["help", "elp"],
 	run: async (param) => {
-		param.bot.say(param.channel, `${user.username}, no elp NOPERS`);
+		param.bot.say(param.channel, `${param.user.username}, no elp NOPERS`);
 	},
 }

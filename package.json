@@ -11,8 +11,9 @@
   "dependencies": {
     "dotenv": "^10.0.0",
     "mathjs": "^9.3.2",
+    "mongoose": "^5.12.13",
     "node-fetch": "^2.6.1",
     "node-twitch": "^0.4.3",
-    "tmi.js": "^1.5.0"
+    "tmi.js": "^1.8.3"
   }
 }
