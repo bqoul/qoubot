@@ -11,19 +11,17 @@ app.listen(PORT, async () => {
 	aliases.data.connect();
 	/*
 		getting list of connected channels from database
-		to connect the bot to this channels when website starts
+		to reconnect all bots to the channels when website starts up
 		(in case if website crashes or something)
 	*/
-	const connected = require("./aliases/data/connected");
-	const channel_list = await connected.find();
-
+	const connected = await aliases.data.get_all("connected");
 	let bot = {};
-	for(const {channel} of channel_list) {
+	for(const {channel} of connected) {
 		bot[channel] = new Bot(channel);
 		bot[channel].connect();
 	}
 });
 
 app.get("/", (req, res) => {
-	res.send("hello world!");
+	res.send(`hello, ${req.socket.remoteAddress}!`);
 });

@@ -9,6 +9,10 @@ module.exports = {
 		const data = require(`./data/${type}`);
 		return data.findOne({channel: channel});
 	},
+	async get_all(type) {
+		const data = require(`./data/${type}`);
+		return data.find();
+	},
 	async set(type, options) {
 		const data = require(`./data/${type}`);
 		const get = await this.get(type, options.channel);
