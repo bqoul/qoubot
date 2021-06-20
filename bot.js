@@ -14,7 +14,9 @@ module.exports = class Bot {
 	connect() {
 		this[this.channel].connect();
 		this[this.channel].on("message", async (channel, user, message, self) => {
+			//making sure bot wont respont to himself
 			if(self) return;
+
 			//message handler
 			for(const file of fs.readdirSync("./messages")) {
 				const message_handler = require(`./messages/${file}`);
