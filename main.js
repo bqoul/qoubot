@@ -5,6 +5,7 @@ const Bot = require("./bot");
 
 const app = express();
 const PORT = process.env.PORT ?? 3000;
+let bot = {};
 
 app.listen(PORT, async () => {
 	console.log(`listening to port ${PORT}...`);
@@ -15,7 +16,6 @@ app.listen(PORT, async () => {
 		(in case if website crashes or something)
 	*/
 	const connected = await aliases.data.get_all("connected");
-	let bot = {};
 	for(const {channel} of connected) {
 		bot[channel] = new Bot(channel);
 		bot[channel].connect();
