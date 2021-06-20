@@ -1,5 +1,4 @@
 const fs = require("fs");
-const twitch = require("./twitch");
 const aliases = require("./aliases");
 
 module.exports = class Bot {
@@ -7,7 +6,7 @@ module.exports = class Bot {
 		//saving the channel name for easier access to the bot
 		this.channel = channel;
 		//creating new bot in an object for every chat to connect / disconnect qoubot from the channel on call
-		this[channel] = twitch.bot(channel);
+		this[channel] = aliases.twitch.bot(channel);
 	}
 	//empty array for global timeout protection
 	waiting = [];
