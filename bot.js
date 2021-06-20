@@ -8,12 +8,12 @@ module.exports = class Bot {
 		//creating new bot in an object for every chat to connect / disconnect qoubot from the channel on call
 		this[channel] = aliases.twitch.bot(channel);
 	}
-	//empty array for global timeout protection
+	//empty array for the global timeout protection
 	waiting = [];
 	connect() {
 		this[this.channel].connect();
 		this[this.channel].on("message", async (channel, user, message, self) => {
-			//making sure bot wont respont to himself
+			//making sure bot wont respond to himself
 			if(self) return;
 
 			//message handler
@@ -44,7 +44,7 @@ module.exports = class Bot {
 							user: user,
 							message: message,
 						});
-						//adding channel to the waiting list to avoid global timeout
+						//adding channel to the waiting array to avoid global timeout
 						aliases.gtp(channel, this.waiting);
 						return;
 					}
