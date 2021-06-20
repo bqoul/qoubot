@@ -1,12 +1,12 @@
 module.exports = {
 	tags: ["pyramid"],
-	run: async (param) => {
+	run: async (params) => {
 		//expected message => "&pyramid EMOTE AMOUNT_OF_TIMES"
-		const emote = param.message.split(/[ ]+/)[1];
-		let times = param.message.split(/[ ]+/)[2] ?? 3;
+		const emote = params.message.split(/[ ]+/)[1];
+		let times = params.message.split(/[ ]+/)[2] ?? 3;
 
 		if(!emote) {
-			param.bot.say(param.channel, `${param.user.username}, MrDestructoid invalid syntax, expected <&pyramid EMOTE> or <&pyramid EMOTE AMOUNT_OF_TIMES>`);
+			params.bot.say(params.channel, `${params.user.username}, MrDestructoid invalid syntax, expected <&pyramid EMOTE> or <&pyramid EMOTE AMOUNT_OF_TIMES>`);
 			return;
 		}
 		//little control to the amount of times
@@ -17,10 +17,10 @@ module.exports = {
 		}
 
 		for(i = 1; i < times; i++) {
-			param.bot.say(param.channel, `${emote} `.repeat(i));
+			params.bot.say(params.channel, `${emote} `.repeat(i));
 		}
 		for(times - 1; times > 0; times--) {
-			param.bot.say(param.channel, `${emote} `.repeat(times));
+			params.bot.say(params.channel, `${emote} `.repeat(times));
 		}
 	}
 }

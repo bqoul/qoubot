@@ -1,6 +1,6 @@
 module.exports = {
 	tags: ["vanish", "v"],
-	run: (param) => {
-		param.bot.timeout(param.channel, param.user.username, 1, "vanished");
+	run: (params) => {
+		params.bot.timeout(params.channel, params.user.username, 1, "vanished");
 	}
 }

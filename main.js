@@ -9,7 +9,7 @@ let bot = {};
 
 app.listen(PORT, async () => {
 	console.log(`listening to port ${PORT}...`);
-	aliases.data.connect();
+	await aliases.data.connect();
 	/*
 		getting list of connected channels from database
 		to reconnect all bots to the channels when website starts up

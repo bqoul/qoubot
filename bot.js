@@ -9,23 +9,35 @@ module.exports = class Bot {
 		//creating new bot in an object for every chat to connect / disconnect qoubot from the channel on call
 		this[channel] = twitch.bot(channel);
 	}
-	//empty array for channels, to avoid global timeout
+	//empty array for global timeout protection
 	waiting = [];
 	connect() {
 		this[this.channel].connect();
 		this[this.channel].on("message", async (channel, user, message, self) => {
-			if(self || this.waiting.includes(channel)) return;
+			if(self) return;
+			//message handler
+			for(const file of fs.readdirSync("./messages")) {
+				const message_handler = require(`./messages/${file}`);
+				message_handler.run({
+					bot: this[this.channel],
+					channel: channel,
+					user: user,
+					message: message,
+				});
+			}
 
+			//check if channel is waiting, to block command handler
+			if(this.waiting.includes(channel)) return;
 			//looking for custom index in database, if theres no custom index - setting it to default value
 			const {index} = await aliases.data.get("index", channel) ?? {index: "&"};
-			//iterating througth all files in the ./commands
+
+			//command handler
 			for(const file of fs.readdirSync("./commands")) {
-				const command = require(`./commands/${file}`);
-				for(const tag of command.tags) {
+				const command_handler = require(`./commands/${file}`);
+				for(const tag of command_handler.tags) {
 					//check if tag and roles matched
-					if(`${index}${tag}`.toLowerCase() == message.split(" ")[0].toLowerCase() && (!command.roles || command.roles.includes(aliases.role(user)))) {
-						// tag.run(this[this.channel], channel, user, message);
-						command.run({
+					if(`${index}${tag}`.toLowerCase() == message.split(" ")[0].toLowerCase() && (!command_handler.roles || command_handler.roles.includes(aliases.role(user)))) {
+						command_handler.run({
 							bot: this[this.channel],
 							channel: channel,
 							user: user,

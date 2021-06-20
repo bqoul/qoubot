@@ -2,13 +2,13 @@ const math = require("mathjs");
 
 module.exports = {
 	tags: ["count", "calculate"],
-	run: async (param) => {
+	run: async (params) => {
 		try {
-			const equasion = param.message.slice(`${param.message.split(/[ ]+/)[0]} `.length);
+			const equasion = params.message.slice(`${params.message.split(" ")[0]} `.length);
 			const result = math.evaluate(equasion);
-			param.bot.say(param.channel, `${param.user.username}, MrDestructoid ${equasion} = ${result}`);
+			params.bot.say(params.channel, `${params.user.username}, MrDestructoid ${equasion} = ${result}`);
 		} catch {
-			param.bot.say(param.channel, `${param.user.username}, MrDestructoid unnable to calculate.`);
+			params.bot.say(params.channel, `${params.user.username}, MrDestructoid unnable to calculate.`);
 		}
 	},
 }

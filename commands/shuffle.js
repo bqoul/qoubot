@@ -1,14 +1,14 @@
 module.exports = {
 	tags: ["shuffle"],
-	run: async (param) => {
-		param.message = param.message.split(/[ ]+/);
-		param.message.shift() //removing "&shuffle " from the message
-		for (let i = param.message.length - 1; i > 0; i--) {
+	run: async (params) => {
+		params.message = params.message.split(/[ ]+/);
+		params.message.shift() //removing "&shuffle " from the message
+		for (let i = params.message.length - 1; i > 0; i--) {
 			const j = Math.floor(Math.random() * (i + 1));
-			[param.message[i], param.message[j]] = [param.message[j], param.message[i]];
+			[params.message[i], params.message[j]] = [params.message[j], params.message[i]];
 		}
-		param.message = param.message.join(" ");
+		params.message = params.message.join(" ");
 
-		param.bot.say(param.channel, param.message);
+		params.bot.say(params.channel, params.message);
 	}
 }
