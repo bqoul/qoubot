@@ -1,7 +1,7 @@
 const aliases = require("../aliases");
 
 module.exports = {
-	tags: ["nuke"],
+	tags: ["nuke", "nukes"],
 	roles: ["streamer", "mod", "vip"],
 	run: async (params) => {
 		//expected message => &nuke add some phrase | timeout duration in seconds
