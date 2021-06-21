@@ -27,12 +27,37 @@ module.exports = class Bot {
 				});
 			}
 
-			//check if channel is waiting, to block command handler
+			//check if channel is waiting, to block command handlers
 			if(this.waiting.includes(channel)) return;
 			//looking for custom index in database, if theres no custom index - setting it to default value
 			const {index} = await aliases.data.get("index", channel) ?? {index: "&"};
 
-			//command handler
+			//command handler for the custom commands
+			const {commands} = await aliases.data.get("command", channel) ?? {commands: []};
+			for(const command of commands) {
+				for(const tag of command.tags) {
+					if(`${index}${tag}`.toLowerCase() == message.split(" ")[0].toLowerCase()) {
+						//passing the data to the custom command handler
+						aliases.cch({
+							bot: this[this.channel],
+							channel: channel,
+							user: user,
+							message: message,
+							command: command,
+						})
+						//adding channel to the waiting array to avoid global timeout
+						aliases.gtp(channel, this.waiting);
+						//saving commands witch changed amount of calls to the database
+						aliases.data.set("command", {
+							channel: channel,
+							commands: commands,
+						})
+						return;
+					}
+				}
+			}
+
+			//command handler for the precoded commands
 			for(const file of fs.readdirSync("./commands")) {
 				const command_handler = require(`./commands/${file}`);
 				for(const tag of command_handler.tags) {
