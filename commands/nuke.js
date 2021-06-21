@@ -19,22 +19,22 @@ module.exports = {
 		switch(params.message.split(/[ ]+/)[1]) {
 			case "add":
 				if(phrase in nukes) {
-					params.bot.say(params.channel, `${params.user.username}, MrDestructoid ERROR: phrase already in the nuke list`);
+					params.bot.say(params.channel, `${params.user.username}, MrDestructoid ERROR: phrase already in the nuke list.`);
 					return;
 				} 
 
 				nukes[phrase] = parseInt(duration);
-				params.bot.say(params.channel, `${params.user.username}, MrDestructoid phrase < ${phrase} > was added to the nuke list`);
+				params.bot.say(params.channel, `${params.user.username}, MrDestructoid phrase < ${phrase} > was added to the nuke list.`);
 				break;
 
 			case "remove":
 				if(!(phrase in nukes)) {
-					params.bot.say(params.channel, `${params.user.username}, MrDestructoid ERROR: theres no such phrase in the nuke list`);
+					params.bot.say(params.channel, `${params.user.username}, MrDestructoid ERROR: theres no such phrase in the nuke list.`);
 					return;
 				}
 
 				delete nukes[phrase];
-				params.bot.say(params.channel, `${params.user.username}, MrDestructoid phrase < ${phrase} > was removed from the nuke list`);
+				params.bot.say(params.channel, `${params.user.username}, MrDestructoid phrase < ${phrase} > was removed from the nuke list.`);
 				break;
 
 			default: 

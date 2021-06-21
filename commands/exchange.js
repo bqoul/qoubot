@@ -21,7 +21,7 @@ module.exports = {
 
 			params.bot.say(params.channel, `${params.user.username}, 📈 ${amount} ${base} is ${responce.conversion_result.toFixed(2)} ${target}`);
 		} catch {
-			params.bot.say(params.channel, `${params.user.username}, MrDestructoid invalid syntax, expected <&exchange CUR to CUR> or <&exchange AMOUNT CUR to CUR>`);
+			params.bot.say(params.channel, `${params.user.username}, MrDestructoid ERROR: invalid syntax, expected <&exchange CUR to CUR> or <&exchange AMOUNT CUR to CUR>`);
 		}
 	},
 }

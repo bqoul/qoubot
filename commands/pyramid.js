@@ -6,7 +6,7 @@ module.exports = {
 		let times = params.message.split(/[ ]+/)[2] ?? 3;
 
 		if(!emote) {
-			params.bot.say(params.channel, `${params.user.username}, MrDestructoid invalid syntax, expected <&pyramid EMOTE> or <&pyramid EMOTE AMOUNT_OF_TIMES>`);
+			params.bot.say(params.channel, `${params.user.username}, MrDestructoid ERROR: invalid syntax, expected <&pyramid EMOTE> or <&pyramid EMOTE AMOUNT_OF_TIMES>`);
 			return;
 		}
 		//little control to the amount of times

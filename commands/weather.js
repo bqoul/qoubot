@@ -11,7 +11,7 @@ module.exports = {
 
 		//if bot couldnt find the location
 		if (!forecast.location) {
-			params.bot.say(params.channel, `@${params.user.username} MrDestructoid ${forecast.error.message.toLowerCase()}`);
+			params.bot.say(params.channel, `@${params.user.username} MrDestructoid ERROR: ${forecast.error.message.toLowerCase()}.`);
 			return;
 		}
 

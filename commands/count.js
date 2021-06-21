@@ -8,7 +8,7 @@ module.exports = {
 			const result = math.evaluate(equasion);
 			params.bot.say(params.channel, `${params.user.username}, MrDestructoid ${equasion} = ${result}`);
 		} catch {
-			params.bot.say(params.channel, `${params.user.username}, MrDestructoid unnable to calculate.`);
+			params.bot.say(params.channel, `${params.user.username}, MrDestructoid ERROR: unnable to calculate.`);
 		}
 	},
 }

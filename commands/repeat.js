@@ -20,6 +20,6 @@ module.exports = {
 			})
 		}
 
-		params.bot.say(params.channel, `${params.user.username} MrDestructoid got it, boss`);
+		params.bot.say(params.channel, `${params.user.username} MrDestructoid got it, boss.`);
 	}
 }

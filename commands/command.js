@@ -17,7 +17,7 @@ module.exports = {
 				for(const command of data.commands) {
 					for(const tag of tags) {
 						if(command.tags.includes(tag)) {
-							params.bot.say(params.channel, `${params.user.username}, MrDestructoid ERROR: command with tag <${tag}> already exists`);
+							params.bot.say(params.channel, `${params.user.username}, MrDestructoid ERROR: command with tag <${tag}> already exists.`);
 							return;
 						}
 					}
@@ -36,7 +36,7 @@ module.exports = {
 				});
 				aliases.data.set("command", data);
 
-				params.bot.say(params.channel, `${params.user.username}, MrDestructoid command was successfully added`);
+				params.bot.say(params.channel, `${params.user.username}, MrDestructoid command was successfully added.`);
 				break;
 
 			case "remove":
@@ -45,12 +45,12 @@ module.exports = {
 						data.commands.splice(data.commands.indexOf(command), 1);
 						aliases.data.set("command", data);
 
-						params.bot.say(params.channel, `${params.user.username}, MrDestructoid command was successfully removed`);
+						params.bot.say(params.channel, `${params.user.username}, MrDestructoid command was successfully removed.`);
 						return;
 					}
 				}
 
-				params.bot.say(params.channel, `${params.user.username}, MrDestructoid ERROR: command with tag <${command_text}> does not exists`);
+				params.bot.say(params.channel, `${params.user.username}, MrDestructoid ERROR: command with tag <${command_text}> does not exists.`);
 				break;
 
 			default:
