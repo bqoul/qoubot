@@ -5,7 +5,7 @@ module.exports = async (params) => {
 	params.command.calls += 1;
 	//recursive function to format all the tags
 	const format = async (text) => {
-		let substr = text.substring(text.lastIndexOf("{") + 1, text.lastIndexOf("}"));
+		const substr = text.substring(text.lastIndexOf("{") + 1, text.lastIndexOf("}"));
 		switch(substr.split("&")[0]) {
 			case "user":
 				return format(text.replace(`{${substr}}`, params.user.username));
@@ -18,13 +18,15 @@ module.exports = async (params) => {
 				switch(options) {
 					//expected tag -> {rnd&v}
 					case "v":
-						//this works little slow but it works!
-						const request = await fetch(`https://tmi.twitch.tv/group/user/${params.channel.slice(1)}/chatters`);
-						const responce = await request.json();
+						return format(text.replace(`{${substr}}`, await get_viewer("viewers")));
 
-						const viewer = ~~(Math.random() * ((responce.chatters.viewers.length - 1) - 0 + 1)) + 0;
+					//expected tag -> {rnd&vip}
+					case "vip":
+						return format(text.replace(`{${substr}}`, await get_viewer("vips")));
 
-						return format(text.replace(`{${substr}}`, responce.chatters.viewers[viewer]));
+					//expected tag -> {rnd&mod}
+					case "mod":
+						return format(text.replace(`{${substr}}`, await get_viewer("moderators")));
 
 					//expected tag -> {rnd&min-max}
 					default: 
@@ -38,6 +40,14 @@ module.exports = async (params) => {
 			default:
 				return text;
 		}
+	}
+
+	const get_viewer = async (user_type) => {
+		//TODO: make this work faster!
+		const request = await fetch(`https://tmi.twitch.tv/group/user/${params.channel.slice(1)}/chatters`);
+		const responce = await request.json();
+		const user = ~~(Math.random() * ((responce.chatters[user_type].length - 1) - 0 + 1)) + 0;
+		return responce.chatters[user_type][user];
 	}
 
 	params.bot.say(params.channel, await format(params.command.text));
