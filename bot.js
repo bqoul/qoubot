@@ -37,8 +37,8 @@ module.exports = class Bot {
 
 			//message handler
 			for(const file of fs.readdirSync("./messages")) {
-				const message_handler = require(`./messages/${file}`);
-				message_handler.run({
+				const messageHandler = require(`./messages/${file}`);
+				messageHandler.run({
 					bot: this[this.channel],
 					channel: channel,
 					user: user,
@@ -79,11 +79,11 @@ module.exports = class Bot {
 
 			//command handler for the precoded commands
 			for(const file of fs.readdirSync("./commands")) {
-				const command_handler = require(`./commands/${file}`);
-				for(const tag of command_handler.tags) {
+				const commandHandler = require(`./commands/${file}`);
+				for(const tag of commandHandler.tags) {
 					//check if tag and roles matched
-					if(`${index}${tag}`.toLowerCase() == message.split(" ")[0].toLowerCase() && (!command_handler.roles || command_handler.roles.includes(aliases.role(user)))) {
-						command_handler.run({
+					if(`${index}${tag}`.toLowerCase() == message.split(" ")[0].toLowerCase() && (!commandHandler.roles || commandHandler.roles.includes(aliases.role(user)))) {
+						commandHandler.run({
 							bot: this[this.channel],
 							channel: channel,
 							user: user,

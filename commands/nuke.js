@@ -2,7 +2,7 @@ const aliases = require("../aliases");
 
 module.exports = {
 	tags: ["nuke", "nukes"],
-	roles: ["streamer", "mod", "vip"],
+	roles: ["streamer", "moderator", "vip"],
 	run: async (params) => {
 		//expected message => &nuke add some phrase | timeout duration in seconds
 		const message = params.message.slice(`${params.message.split(/[ ]+/)[0]} ${params.message.split(/[ ]+/)[1]} `.length);

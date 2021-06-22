@@ -2,7 +2,7 @@ const aliases = require("../aliases");
 
 module.exports = {
 	tags: ["spam"],
-	roles: ["streamer", "mod", "vip"],
+	roles: ["streamer", "moderator", "vip"],
 	run: async (params) => {
 		params.message = params.message.slice(`${params.message.split(" ")[0]} `.length); //removing "&spam " from the message
 

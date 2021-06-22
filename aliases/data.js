@@ -9,7 +9,7 @@ module.exports = {
 		const schema = require(`./schemas/${type}`);
 		return schema.findOne({channel: channel});
 	},
-	async get_all(type) {
+	async getAll(type) {
 		const schema = require(`./schemas/${type}`);
 		return schema.find();
 	},

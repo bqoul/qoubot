@@ -2,7 +2,7 @@ const aliases = require("../aliases")
 
 module.exports = {
 	tags: ["repeat"],
-	roles: ["streamer", "mod", "vip"],
+	roles: ["streamer", "moderator", "vip"],
 	run: async (params) => {
 		//message expamle => user: &repeat target shuffle
 		let shuffle = false;

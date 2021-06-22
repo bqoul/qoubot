@@ -15,7 +15,7 @@ app.listen(PORT, async () => {
 		to reconnect all bots to the channels when website starts up
 		(in case if website crashes or something)
 	*/
-	const connected = await aliases.data.get_all("connected");
+	const connected = await aliases.data.getAll("connected");
 	for(const {channel} of connected) {
 		bot[channel] = new Bot(channel);
 		bot[channel].connect();
