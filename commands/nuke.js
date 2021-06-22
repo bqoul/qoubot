@@ -23,7 +23,7 @@ module.exports = {
 					return;
 				} 
 
-				nukes[phrase] = parseInt(duration);
+				nukes[phrase.toString()] = parseInt(duration);
 				params.bot.say(params.channel, `${params.user.username}, MrDestructoid phrase < ${phrase} > was added to the nuke list.`);
 				break;
 
