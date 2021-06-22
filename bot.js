@@ -7,9 +7,28 @@ module.exports = class Bot {
 		this.channel = channel;
 		//creating new bot in an object for every chat to connect / disconnect qoubot from the channel on call
 		this[channel] = aliases.twitch.bot(channel);
+		/* 
+			setting interval that will refresh chatters data for the channel every 10 minutes,
+			so i can make custom command tags like {rnd&v}, {rnd&mod}, {rnd&vip} work faster
+		*/
+		setInterval(async () => {
+			this.viewers_data.seconds_passed += 1;
+			if(this.viewers_data.seconds_passed >= 600) {
+				const fetch = require("node-fetch");
+		
+				this.viewers_data.seconds_passed = 0;
+					const request = await fetch(`https://tmi.twitch.tv/group/user/${channel}/chatters`);
+					const responce = await request.json();
+					this.viewers_data.chatters = responce.chatters;
+			}
+		}, 1000);
 	}
 	//empty array for the global timeout protection
 	waiting = [];
+	//empty object for the chatters
+	viewers_data = {
+		seconds_passed: 600,
+	};
 	connect() {
 		this[this.channel].connect();
 		this[this.channel].on("message", async (channel, user, message, self) => {
@@ -44,6 +63,7 @@ module.exports = class Bot {
 							user: user,
 							message: message,
 							command: command,
+							chatters: this.viewers_data.chatters,
 						})
 						//adding channel to the waiting array to avoid global timeout
 						aliases.gtp(channel, this.waiting);

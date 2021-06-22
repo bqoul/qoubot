@@ -16,11 +16,11 @@ module.exports = async (params) => {
 
 			case "rnd":
 				const options = substr.split("&")[1];
-				const user = await aliases.twitch.api.getUsers(params.channel.slice(1));
 
 				switch(options) {
 					//expected tag -> {rnd&f}, returns random follower
 					case "f":
+						const user = await aliases.twitch.api.getUsers(params.channel.slice(1));
 						const followers = await aliases.twitch.api.getFollows({first: 100, to_id: user.data[0].id});
 						const follower = ~~(Math.random() * ((followers.data.length - 1) - 0 + 1)) + 0;
 
@@ -28,15 +28,18 @@ module.exports = async (params) => {
 
 					//expected tag -> {rnd&v}, returns random viewer
 					case "v":
-						return format(text.replace(`{${substr}}`, await get_viewer("viewers")));
+						const viewer = ~~(Math.random() * ((params.chatters.viewers.length - 1) - 0 + 1)) + 0;
+						return format(text.replace(`{${substr}}`, params.chatters.viewers[viewer]));
 					
 					//expected tag -> {rnd&vip}, returns random vip
 					case "vip":
-						return format(text.replace(`{${substr}}`, await get_viewer("vips")));
+						const vip = ~~(Math.random() * ((params.chatters.vips.length - 1) - 0 + 1)) + 0;
+						return format(text.replace(`{${substr}}`, params.chatters.vips[vip]));
 
 					//expected tag -> {rnd&mod}, returns random mod
 					case "mod":
-						return format(text.replace(`{${substr}}`, await get_viewer("moderators")));
+						const mod = ~~(Math.random() * ((params.chatters.moderators.length - 1) - 0 + 1)) + 0;
+						return format(text.replace(`{${substr}}`, params.chatters.moderators[mod]));
 
 					//expected tag -> {rnd&min-max}
 					default: 
@@ -50,15 +53,6 @@ module.exports = async (params) => {
 			default:
 				return text;
 		}
-	}
-
-	//some of the data are unavailable in twitch.api, so i have to use this EXTREMELY SLOW solution
-	const get_viewer = async (user_type) => {
-		//this works very slow :(
-		const request = await fetch(`https://tmi.twitch.tv/group/user/${params.channel.slice(1)}/chatters`);
-		const responce = await request.json();
-		const user = ~~(Math.random() * ((responce.chatters[user_type].length - 1) - 0 + 1)) + 0;
-		return responce.chatters[user_type][user];
 	}
 
 	params.bot.say(params.channel, await format(params.command.text));
