@@ -1,4 +1,5 @@
 const fetch = require("node-fetch");
+const aliases = require("../aliases");
 //custom command handler
 module.exports = async (params) => {
 	//adding one to the amount for calls for the data
@@ -15,16 +16,25 @@ module.exports = async (params) => {
 
 			case "rnd":
 				const options = substr.split("&")[1];
+				const user = await aliases.twitch.api.getUsers(params.channel.slice(1));
+
 				switch(options) {
-					//expected tag -> {rnd&v}
+					//expected tag -> {rnd&f}, returns random follower
+					case "f":
+						const followers = await aliases.twitch.api.getFollows({first: 100, to_id: user.data[0].id});
+						const follower = ~~(Math.random() * ((followers.data.length - 1) - 0 + 1)) + 0;
+
+						return format(text.replace(`{${substr}}`, followers.data[follower].from_name));
+
+					//expected tag -> {rnd&v}, returns random viewer
 					case "v":
 						return format(text.replace(`{${substr}}`, await get_viewer("viewers")));
-
-					//expected tag -> {rnd&vip}
+					
+					//expected tag -> {rnd&vip}, returns random vip
 					case "vip":
 						return format(text.replace(`{${substr}}`, await get_viewer("vips")));
 
-					//expected tag -> {rnd&mod}
+					//expected tag -> {rnd&mod}, returns random mod
 					case "mod":
 						return format(text.replace(`{${substr}}`, await get_viewer("moderators")));
 
@@ -42,8 +52,9 @@ module.exports = async (params) => {
 		}
 	}
 
+	//some of the data are unavailable in twitch.api, so i have to use this EXTREMELY SLOW solution
 	const get_viewer = async (user_type) => {
-		//TODO: make this work faster!
+		//this works very slow :(
 		const request = await fetch(`https://tmi.twitch.tv/group/user/${params.channel.slice(1)}/chatters`);
 		const responce = await request.json();
 		const user = ~~(Math.random() * ((responce.chatters[user_type].length - 1) - 0 + 1)) + 0;
